@@ -1,14 +1,13 @@
 
 import React from 'react'
-import './HomePage.css'; // Import the CSS file
-
+import '../assets/styles/HomePage.css'; // Import the CSS file
 
 export default function HomePage() {
   return (
     <div>
       <nav className="navbar bg-body-tertiary" padding="1px" border="1px">
 <div className="container" padding="1px" margin-left="1px">
-<img src="gov-logo.png" width="60" height="100" margin="1px">
+<img src="../assets/images/gov-logo.png" width="60" height="100" margin="1px">
 </img>
 <a className="navbar-brand" href="#">
 
