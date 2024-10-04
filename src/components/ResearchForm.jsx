@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './ResearchForm.css'; // Import the CSS file
+import '../assets/styles/ResearchForm.css'; // Import the CSS file
 
 const ResearchForm = () => {
   const [numResearchers, setNumResearchers] = useState(1); // Default is 1 researcher
