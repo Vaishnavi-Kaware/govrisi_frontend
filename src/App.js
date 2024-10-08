@@ -1,26 +1,20 @@
-import './assets/styles/ResearchForm.css';
 import './assets/styles/Homepage.css';
-import './assets/styles/SignInForm.css';
 import './App.css';
-import ResearchForm from './components/ResearchForm';
+
 import HomePage from './components/HomePage';
 import Footer from './components/Footer';
-import SignInForm from './components/SignInForm';
+import ResearcherProfile from './components/ResearcherProfile'; // Importing ResearcherProfile
 
 function App() {
   return (
     <>
-    
-       <HomePage/>
-       <ResearchForm/>
-       <SignInForm/>
-       <Footer/>
-       
-
-    
+    {/*}  <HomePage />      {/* HomePage component */}
+      
+      <ResearcherProfile />  {/* Added ResearcherProfile component */}
+      
+      {/*<Footer />        {/* Footer component */}
     </>
   );
 }
 
 export default App;
-

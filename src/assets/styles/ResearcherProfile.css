@@ -1,0 +1,55 @@
+/* Main Page Styling */
+.researcher-page {
+  min-height: 100vh; /* Ensures content area takes full height of the viewport */
+  display: flex;
+  flex-direction: column; /* Allows footer to be placed after the content */
+  overflow: hidden; /* Prevents both vertical and horizontal scrollbars */
+}
+
+/* Content Wrapper */
+.content {
+  flex-grow: 1; /* This makes the content area grow and fill space above the footer */
+  overflow-y: auto; /* Allows vertical scrolling if necessary */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  padding: 20px; /* Optional: adds some padding to content */
+}
+
+/* Sidebar Styling */
+.sidebar {
+  padding-top: 20px;
+  height: 105vh; /* Ensures sidebar height matches viewport */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #343a40;
+}
+
+/* Profile Circle Styling */
+.profile-circle {
+  width: 100px;
+  height: 100px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  font-size: 36px;
+}
+
+.profile-letter {
+  font-weight: bold;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.header {
+  border-bottom: 2px solid #ddd;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: #17a2b8;
+  padding: 10px 0; /* Padding only on the top and bottom */
+  width: 100%; /* Ensure the footer spans the entire viewport width */
+  text-align: center; /* Center the content inside the footer */
+  margin-top: auto; /* Pushes footer to the bottom of the page */
+}
