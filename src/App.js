@@ -1,18 +1,24 @@
-import './assets/styles/Homepage.css';
 import './App.css';
 
-import HomePage from './components/HomePage';
-import Footer from './components/Footer';
-import ResearcherProfile from './components/ResearcherProfile'; // Importing ResearcherProfile
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage'; // Import your HomePage component
+
+import Research from './components/ResearcherProfile'; // Create this component for "RESEARCH"
+
+
 
 function App() {
   return (
     <>
-    {/*}  <HomePage />      {/* HomePage component */}
-      
-      <ResearcherProfile />  {/* Added ResearcherProfile component */}
-      
-      {/*<Footer />        {/* Footer component */}
+       <Router>
+       <Routes>
+        <Route path="/" element={<HomePage />} />
+        
+        <Route path="/research" element={<Research />} />
+        
+      </Routes>
+    </Router>
     </>
   );
 }
