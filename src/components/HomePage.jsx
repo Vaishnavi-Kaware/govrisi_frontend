@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Header from './Header';
-import Footer from './Footer';
-import ImageSlider from './ImageSlider';
+
 import '../assets/styles/Homepage.css';
 
 
@@ -10,8 +8,8 @@ export default function HomePage() {
   return (
     
     <div>
-      <Header/>
-      <div>
+      
+      
         
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
@@ -44,9 +42,7 @@ export default function HomePage() {
       
       
        
-      </div>
-       <ImageSlider/>
-       <Footer/>
+      
       
     </div>
   )

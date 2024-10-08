@@ -1,4 +1,7 @@
 import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ImageSlider from './components/ImageSlider';
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -11,6 +14,7 @@ import Research from './components/ResearcherProfile'; // Create this component 
 function App() {
   return (
     <>
+       <Header/>
        <Router>
        <Routes>
         <Route path="/" element={<HomePage />} />
@@ -19,6 +23,8 @@ function App() {
         
       </Routes>
     </Router>
+    <ImageSlider/>
+    <Footer/>
     </>
   );
 }
