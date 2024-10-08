@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    /* You can customize the background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+    flex: 1;
+}
+
+.header-center {
+    flex: 2;
+    text-align: center;
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-icon {
+    width: 70px;
+    height: 100px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
