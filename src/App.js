@@ -1,18 +1,32 @@
-import './assets/styles/Homepage.css';
 import './App.css';
 
-import HomePage from './components/HomePage';
 import Footer from './components/Footer';
-import ResearcherProfile from './components/ResearcherProfile'; // Importing ResearcherProfile
+
+
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage'; // Import your HomePage component
+
+import Researchhomepage from './components/Researchhomepage'; // Create this component for "RESEARCH"
+import SignIn from './components/SignInForm';
+import Resercherprofile from './components/ResearcherProfile';
+
 
 function App() {
   return (
     <>
-    {/*}  <HomePage />      {/* HomePage component */}
-      
-      <ResearcherProfile />  {/* Added ResearcherProfile component */}
-      
-      {/*<Footer />        {/* Footer component */}
+       
+       <Router>
+       <Routes>
+        <Route path="/" element={<HomePage />} />
+        
+        <Route path="/research" element={<Researchhomepage />} />
+        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/research-profile" element={<Resercherprofile />} />
+        
+      </Routes>
+    </Router>
+    <Footer/>
     </>
   );
 }

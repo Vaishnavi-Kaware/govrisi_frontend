@@ -145,13 +145,7 @@ const ResearcherProfile = () => {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <div className="footer text-center py-3" style={{ backgroundColor: '#0066cc', color: 'white' }}>
-        <p>&copy; 2024 Gujarat Government</p>
-        <p>Enhancing Research, IPR, Innovation & Start-ups</p>
-        <p>Email: research.gujarat.gov.in | Phone: +91 123 456 7890</p>
-      </div>
+      
     </div>
   );
 };

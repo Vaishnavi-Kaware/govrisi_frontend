@@ -41,15 +41,3 @@
   border-radius: 10px;
 }
 
-.header {
-  border-bottom: 2px solid #ddd;
-}
-
-/* Footer Styling */
-.footer {
-  background-color: #17a2b8;
-  padding: 10px 0; /* Padding only on the top and bottom */
-  width: 100%; /* Ensure the footer spans the entire viewport width */
-  text-align: center; /* Center the content inside the footer */
-  margin-top: auto; /* Pushes footer to the bottom of the page */
-}
