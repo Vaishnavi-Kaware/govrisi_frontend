@@ -3,6 +3,8 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import govlogo from "../assets/images/gov-logo.png";
 import { Link } from 'react-router-dom';
 import "../assets/styles/ReasearchSearchWindow.css";
+import SearchResult from "./SearchResult";
+import Header from './Header';
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([
@@ -17,13 +19,8 @@ const App = () => {
 
   return (
     <div>
-      {/* Navbar Section */}
-      <nav className="navbar bg-body-tertiary" style={{ padding: "1px", border: "1px", position: "fixed", top: "0", width: "100%", zIndex: "1000" }}>
-        <div className="container" style={{ padding: "1px", marginLeft: "0px" }}>
-          <img src={govlogo} width="60" height="100" alt="Government Logo"></img>
-          <a className="navbar-brand" href="#"></a>
-        </div>
-      </nav>
+      <Header/>
+      
 
       <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{ position: "fixed", top: "100px", left: "0", width: "100%", zIndex: "999" }}>
         <div className="container-fluid">
