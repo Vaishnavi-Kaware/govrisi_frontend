@@ -22,7 +22,7 @@ const App = () => {
       <Header/>
       
 
-      <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{ position: "fixed", top: "100px", left: "0", width: "100%", zIndex: "999" }}>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">Home</a>
           <button
