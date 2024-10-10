@@ -1,7 +1,7 @@
 import ImageSlider from './ImageSlider';
 import Header from './Header';
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import '../assets/styles/Homepage.css';
 
@@ -28,7 +28,8 @@ export default function HomePage() {
 <form className="d-flex" role="search">
   <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search">
   </input>
-  <button className="btn btn-outline-success" type="submit">Search</button>
+  <Link  to="/ReasearchSearchPage"> <button className="btn btn-outline-success" type="submit">Search</button></Link>
+ 
 </form>
 </div>
 </div>

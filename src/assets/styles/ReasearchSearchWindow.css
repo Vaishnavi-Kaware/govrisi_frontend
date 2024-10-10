@@ -1,0 +1,144 @@
+/* General Styles */
+body {
+  
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+
+
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Header Section */
+.btn-sm {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.text-start .btn-sm {
+  background-color: #6c757d; /* Dark grey for signout */
+  color: #fff;
+}
+
+.text-end .btn-sm {
+  background-color: #007bff; /* Blue for Profile button */
+  color: #fff;
+}
+
+.text-end .btn-sm:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Search Bar Styling */
+.form-control {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-outline-primary {
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 5px;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Research Section */
+
+
+.text-end .btn-sm {
+  font-size: 14px;
+}
+
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+/* Search Results Section */
+.search-result-card {
+  border: 1px solid #e3e6eb;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-result-card h6 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.search-result-card p {
+  margin: 0.5rem 0;
+  color: #6c757d;
+}
+
+.search-result-card .status {
+  font-weight: 600;
+  color: #28a745;
+}
+
+.search-result-card .status.out-of-stock {
+  color: #dc3545;
+}
+
+/* Contact Information Section */
+.border {
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+
+
+
+@media (max-width: 768px) {
+  /* Ensure the layout is responsive */
+  .text-start, .text-end {
+    text-align: center !important;
+    margin-bottom: 10px;
+  }
+
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .auth-buttons button {
+    margin-bottom: 10px;
+  }
+
+  .me-2, .ms-2 {
+    margin: 0 !important;
+  }
+}
