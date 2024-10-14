@@ -1,0 +1,92 @@
+.ipr-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  
+  .ipr-intro {
+    max-width: 800px;
+    margin-bottom: 40px;
+  }
+  
+  .ipr-intro h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  .ipr-intro p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+  
+  .ipr-intro a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+  
+  .ipr-types h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+  
+  .ipr-types p {
+    font-size: 1.1em;
+  }
+  
+  .ipr-featured {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+  }
+  
+  .featured-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .featured-box h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .featured-box p {
+    font-size: 1em;
+    margin-bottom: 15px;
+  }
+  
+  .btn-download {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .btn-download:hover {
+    background-color: #0056b3;
+  }
+  
+
+
+  /* Styles for the layout */
+.container {
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+img.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  margin: 10px 0;
+}
