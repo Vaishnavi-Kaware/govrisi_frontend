@@ -1,35 +1,29 @@
 import './App.css';
-
 import Footer from './components/Footer';
-
-
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage'; // Import your HomePage component
-
 import Researchhomepage from './components/Researchhomepage'; // Create this component for "RESEARCH"
 import SignIn from './components/SignInForm';
 import ResearchForm from './components/ResearchForm';
 import Resercherprofile from './components/ResearcherProfile';
 import ReasearchSearchWindow from './components/ReasearchSearchWindow';
+import IPRHomePage from './components/IPRHomePage'; // Import IPRHomePage
 
 function App() {
   return (
     <>
-       
-       <Router>
-       <Routes>
-        <Route path="/" element={<HomePage />} />
-        
-        <Route path="/research" element={<Researchhomepage />} />
-        <Route path="/signIn" element={<SignIn />} />
-        <Route path="/signUp" element={<ResearchForm />} />
-        <Route path="/research-profile" element={<Resercherprofile />} />
-        <Route path="/ReasearchSearchPage" element={<ReasearchSearchWindow />} />
-        
-      </Routes>
-    </Router>
-    <Footer/>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/research" element={<Researchhomepage />} />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/signUp" element={<ResearchForm />} />
+          <Route path="/research-profile" element={<Resercherprofile />} />
+          <Route path="/ReasearchSearchPage" element={<ReasearchSearchWindow />} />
+          <Route path="/ipr" element={<IPRHomePage />} /> {/* Add IPR Home Page Route */}
+        </Routes>
+      </Router>
+      <Footer />
     </>
   );
 }

@@ -1,52 +1,50 @@
 import ImageSlider from './ImageSlider';
-import React from 'react'
+import React from 'react';
 import Header from './Header';
-import { Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom';
 import '../assets/styles/Homepage.css';
 
 export default function HomePage() {
   return (
     <div>
-      <Header/>
+      <Header />
    
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-<div className="container-fluid">
-<a className="navbar-brand" href="#">Home</a>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">Home</Link>
 
-<div className="collapse navbar-collapse" id="navbarSupportedContent">
-<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-  <li className="nav-item">
-    <a className="nav-link active" href="#">ABOUT US</a>
-  </li>
-  <li className="nav-item">
-    <Link className="nav-link active" to="/research">RESEARCH</Link>
-    
-  </li>
-  <li className="nav-item">
-    <a className="nav-link active" href="#">START-UPS</a>
-  </li>
-  <li className="nav-item">
-    <a className="nav-link active" href="#">INOVATION</a>
-  </li>
-  <li className="nav-item">
-    <a className="nav-link active" href="#">IPR</a>
-  </li>
- 
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link className="nav-link active" to="#">ABOUT US</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="/research">RESEARCH</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="#">START-UPS</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="#">INNOVATION</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="/ipr">IPR</Link> {/* Update to use Link for IPR */}
+              </li>
+            </ul>
+            <form className="d-flex" role="search">
+              <input 
+                className="form-control me-2" 
+                type="search" 
+                placeholder="Search" 
+                aria-label="Search" 
+              />
+              <button className="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
 
-</ul>
-<form className="d-flex" role="search">
-  <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-  </input>
-  <button className="btn btn-outline-success" type="submit">Search</button>
-</form>
-</div>
-</div>
-</nav>
- <ImageSlider/>
+      <ImageSlider />
     </div>
-     
-  )
+  );
 }
-
-
