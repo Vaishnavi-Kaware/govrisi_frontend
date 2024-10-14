@@ -1,9 +1,9 @@
-import ImageSlider from './ImageSlider';
-import Header from './Header';
+import ImageSlider from '../ImageSlider';
+import Header from '../Header';
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-import '../assets/styles/Homepage.css';
+import '../../assets/styles/Homepage.css';
 
 
 export default function HomePage() {
