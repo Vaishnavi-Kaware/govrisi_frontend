@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import govlogo from "../assets/images/gov-logo.png";
 import { Link } from 'react-router-dom';
-import "../assets/styles/ReasearchSearchWindow.css";
+import "../../assets/styles/ResearchStyle/ReasearchSearchWindow.css";
 import SearchResult from "./SearchResult";
-import Header from './Header';
+import Header from '../Header';
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([

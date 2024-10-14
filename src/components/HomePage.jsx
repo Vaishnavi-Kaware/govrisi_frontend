@@ -1,7 +1,7 @@
 import ImageSlider from './ImageSlider';
-import React from 'react'
+import React from 'react';
 import Header from './Header';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import '../assets/styles/Homepage.css';
 
@@ -18,6 +18,9 @@ export default function HomePage() {
 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
   <li className="nav-item">
     <a className="nav-link active" href="#">ABOUT US</a>
+  </li>
+  <li className="nav-item">
+    <Link className="nav-link active" to="/contactUs">ContactUs</Link>
   </li>
   <li className="nav-item">
     <Link className="nav-link active" to="/research">RESEARCH</Link>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Header from './Header';
-import "../assets/styles/SignInForm.css";
+import Header from '../Header';
+import "../../assets/styles/ResearchStyle/SignInForm.css";
 import { Link } from 'react-router-dom';
 const SignInForm = () => {
   const [publicUser, setPublicUser] = useState({ email: "", mobile: "", password: "" });

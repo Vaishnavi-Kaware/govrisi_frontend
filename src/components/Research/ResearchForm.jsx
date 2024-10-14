@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 
 const ResearchForm = () => {
+  const navigate = useNavigate();
   const [numResearchers, setNumResearchers] = useState(1);
   const [researchers, setResearchers] = useState([{ name: "",remail:"", researchField: "", role: "" }]);
   const [formData, setFormData] = useState({
@@ -73,7 +75,7 @@ const ResearchForm = () => {
 
   // Adjust number of researcher forms
   const handleNumResearchersChange = (e) => {
-    const num = parseInt(e.target.value) || 0;
+    const num = parseInt(e.target.value) || 1;
     setNumResearchers(num);
 
     const newResearchers = [...researchers];
@@ -132,7 +134,8 @@ const ResearchForm = () => {
           method: "POST",
           body: submissionData, // No need to set Content-Type header
         });
-  
+        const result = await response.json(); // Parse the JSON response
+
         if (response.ok) {
           // Reset form state
           setFormData({
@@ -147,11 +150,15 @@ const ResearchForm = () => {
             confirmPassword: "",
             projectFile: null,
           });
-          setResearchers([{ name: "",remail:"" ,researchField: "", role: "" }]);
+          setResearchers([{ name: "", remail: "", researchField: "", role: "" }]);
           setNumResearchers(1);
           setErrors({});
+  
+          // Redirect to login page
+          navigate("/signIn");
         } else {
-          console.error("Form submission failed");
+          // Show an alert if username or email already exists
+          alert(result.message || "Form submission failed. Please try again.");
         }
       } catch (error) {
         console.error("Error during submission:", error);

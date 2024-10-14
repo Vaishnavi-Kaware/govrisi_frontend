@@ -1,12 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/styles/ResearcherProfile.css';
-import govLogo from '../assets/images/gov-logo.png';
-import img1 from '../assets/images/img1.jpeg';
-import img2 from '../assets/images/img2.jpeg';
-import img3 from '../assets/images/img3.jpeg';
-import img4 from '../assets/images/img4.jpeg';
-import img5 from '../assets/images/img5.jpeg';
+import '../../assets/styles/ResearchStyle/ResearcherProfile.css';
+import govLogo from '../../assets/images/gov-logo.png';
+import img1 from '../../assets/images/img1.jpeg';
+import img2 from '../../assets/images/img2.jpeg';
+import img3 from '../../assets/images/img3.jpeg';
+import img4 from '../../assets/images/img4.jpeg';
+import img5 from '../../assets/images/img5.jpeg';
 
 const ResearcherProfile = () => {
   return (
