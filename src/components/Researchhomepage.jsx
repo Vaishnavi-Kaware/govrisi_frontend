@@ -18,10 +18,10 @@ export default function HomePage() {
 <div className="collapse navbar-collapse" id="navbarSupportedContent">
 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
   <li className="nav-item">
-    <Link className="nav-link active" to="/signIn">LOG-IN</Link>
+    <Link className="nav-link active" to="/signIn">SIGN-IN</Link>
   </li>
   <li className="nav-item">
-    <Link className="nav-link active" to="/research">SIGN-IN</Link>  
+    <Link className="nav-link active" to="/signUp">SIGN-UP</Link>  
   </li>
 
 </ul>
