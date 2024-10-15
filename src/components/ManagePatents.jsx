@@ -60,6 +60,7 @@ function ManagePatents() {
                   <li>IP Analytics</li>
                   <li>Innovation Insights</li>
                   <li>Patent Licensing Support</li>
+                  <li>Patent Filing Support</li>
                 </ul>
                 <a href="https://patsnap.com" className="btn btn-primary mt-auto">Visit PatSnap</a> {/* mt-auto to push the button to the bottom */}
               </div>
@@ -78,6 +79,7 @@ function ManagePatents() {
                   <li>Portfolio Management</li>
                   <li>Patent Docketing</li>
                   <li>Litigation Support</li>
+                  <li>Patent Filing Support</li>
                 </ul>
                 <a href="https://cpaglobal.com" className="btn btn-primary mt-auto">Visit CPA Global</a> {/* mt-auto to push the button to the bottom */}
               </div>
@@ -159,6 +161,19 @@ function ManagePatents() {
 
         </div>
       </div>
+      <style jsx>{`
+        .card {
+          transition: transform 0.2s, background-color 0.2s, color 0.2s;
+        }
+        .card:hover {
+          transform: scale(1.02);
+          background-color: #e7f1ff; /* Change this to your desired hover background color */
+          color: #000; /* Change this to your desired hover text color */
+        }
+        .card-header:hover {
+          background-color: #0056b3; /* Change this to your desired hover header color */
+        }
+      `}</style>
     </div>
   );
 }
