@@ -90,3 +90,17 @@ img.img-fluid {
 .card {
   margin: 10px 0;
 }
+
+/* Aligns the title "What is Intellectual Property?" to the left */
+.title-left {
+  text-align: left;
+}
+
+
+
+.card-img-top {
+  height: 200px; /* Set a fixed height */
+  object-fit: cover; /* Ensures images cover the assigned height without distortion */
+}
+
+

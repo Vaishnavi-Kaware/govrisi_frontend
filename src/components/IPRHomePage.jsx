@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Header from './Header';
 import { Link } from 'react-router-dom';
 import '../assets/styles/IPRHomePage.css';
@@ -12,6 +12,36 @@ import geographicalIndications from '../assets/images/Geographical_indications.j
 import tradeSecrets from '../assets/images/Trade_secrets.jpg';
 
 export default function IPRHomePage() {
+  // Refs for videos
+  const videoRefs = useRef([]);
+
+  useEffect(() => {
+    // Function to pause other videos when one is played
+    const handlePlay = (index) => {
+      videoRefs.current.forEach((video, i) => {
+        if (i !== index && video) {
+          video.pause();
+        }
+      });
+    };
+
+    // Adding event listeners to each video
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        video.addEventListener('play', () => handlePlay(index));
+      }
+    });
+
+    // Cleanup event listeners on component unmount
+    return () => {
+      videoRefs.current.forEach((video) => {
+        if (video) {
+          video.removeEventListener('play', handlePlay);
+        }
+      });
+    };
+  }, []);
+
   return (
     <div>
       <Header />
@@ -47,25 +77,12 @@ export default function IPRHomePage() {
 
       {/* What is Intellectual Property? Section */}
       <div className="container-fluid my-4">
-        <h2 className="text-center">What is Intellectual Property?</h2>
-        <p className="text-center">
-          Intellectual property (IP) refers to creations of the mind, such as inventions; literary and artistic works;
-          designs; and symbols, names, and images used in commerce.
-        </p>
-        <p className="text-center">
-          IP is protected in law by, for example, <a href="#">patents</a>, <a href="#">copyright</a>, and <a href="#">trademarks</a>, 
-          which enable people to earn recognition or financial benefit from what they invent or create. 
-          By striking the right balance between the interests of innovators and the wider public interest, 
-          the IP system aims to foster an environment in which creativity and innovation can flourish.
-        </p>
+        <h2 className="title-left my-3">What is Intellectual Property?</h2>
+        Intellectual Property Rights (IPR) are legal protections granted to individuals or organizations for their creations and innovations. These rights give the creator exclusive control over the use, distribution, and commercialization of their intellectual property, such as inventions, literary works, artistic creations, designs, symbols, and names used in trade. IPR encourages innovation by ensuring that creators can benefit from their efforts and prevent unauthorized use by others. Common forms of IPR include patents for inventions, copyrights for artistic works, trademarks for brand identity, and trade secrets for confidential business information. By safeguarding these creations, IPR promotes a culture of creativity and progress.
 
         {/* Types of Intellectual Property Section */}
-        <h2 className="text-center">Types of Intellectual Property</h2>
-        <p className="text-center">
-          Do you know what the difference is between a patent and an industrial design, 
-          how to protect your photo with a copyright, or why you would want to obtain 
-          a protected designation of origin? Discover everything you ever wanted to know about IP rights.
-        </p>
+        <h2 className="text-start my-3">Types of Intellectual Property</h2>
+        Discover everything you ever wanted to know about IP rights.
 
         {/* Grid layout for types of IP */}
         <div className="row">
@@ -74,9 +91,7 @@ export default function IPRHomePage() {
               <img src={patents} className="card-img-top" alt="Patents" />
               <div className="card-body">
                 <h5 className="card-title">Patents</h5>
-                <p className="card-text">
-                  A patent is an exclusive right granted for an invention. Generally speaking, a patent provides the patent owner with the right to decide how - or whether - the invention can be used by others. In exchange for this right, the patent owner makes technical information about the invention publicly available in the published patent document.
-                </p>
+                <p className="card-text">A patent is an exclusive legal right granted for an invention, giving the patent owner control over how the invention is used.</p>
               </div>
             </div>
           </div>
@@ -85,9 +100,7 @@ export default function IPRHomePage() {
               <img src={copyright} className="card-img-top" alt="Copyright" />
               <div className="card-body">
                 <h5 className="card-title">Copyright</h5>
-                <p className="card-text">
-                  Copyright is a legal term used to describe the rights that creators have over their literary and artistic works. Works covered by copyright range from books, music, paintings, sculpture and films, to computer programs, databases, advertisements, maps and technical drawings.
-                </p>
+                <p className="card-text">Copyright is a legal term that refers to the rights creators hold over their literary and artistic works.</p>
               </div>
             </div>
           </div>
@@ -96,9 +109,7 @@ export default function IPRHomePage() {
               <img src={trademarks} className="card-img-top" alt="Trademarks" />
               <div className="card-body">
                 <h5 className="card-title">Trademarks</h5>
-                <p className="card-text">
-                  A trademark is a sign capable of distinguishing the goods or services of one enterprise from those of other enterprises. Trademarks date back to ancient times when artisans used to put their signature or "mark" on their products.
-                </p>
+                <p className="card-text">Trademarks are symbols, words, or signs used to distinguish the goods or services of one enterprise from those of others.</p>
               </div>
             </div>
           </div>
@@ -107,9 +118,7 @@ export default function IPRHomePage() {
               <img src={industrialDesigns} className="card-img-top" alt="Industrial designs" />
               <div className="card-body">
                 <h5 className="card-title">Industrial Designs</h5>
-                <p className="card-text">
-                  An industrial design constitutes the ornamental or aesthetic aspect of an article. A design may consist of three-dimensional features, such as the shape or surface of an article, or of two-dimensional features, such as patterns, lines, or color.
-                </p>
+                <p className="card-text">Industrial Designs refer to the ornamental or aesthetic aspects of an article.</p>
               </div>
             </div>
           </div>
@@ -118,9 +127,7 @@ export default function IPRHomePage() {
               <img src={geographicalIndications} className="card-img-top" alt="Geographical Indications" />
               <div className="card-body">
                 <h5 className="card-title">Geographical Indications</h5>
-                <p className="card-text">
-                  Geographical indications and appellations of origin are signs used on goods that have a specific geographical origin and possess qualities, a reputation or characteristics that are essentially attributable to that place of origin. Most commonly, a geographical indication includes the name of the place of origin of the goods.
-                </p>
+                <p className="card-text">Geographical Indications are signs used on goods that have a specific geographical origin.</p>
               </div>
             </div>
           </div>
@@ -129,9 +136,7 @@ export default function IPRHomePage() {
               <img src={tradeSecrets} className="card-img-top" alt="Trade Secrets" />
               <div className="card-body">
                 <h5 className="card-title">Trade Secrets</h5>
-                <p className="card-text">
-                  Trade secrets are IP rights on confidential information which may be sold or licensed. The unauthorized acquisition, use or disclosure of such secret information in a manner contrary to honest commercial practices by others is regarded as an unfair practice and a violation of the trade secret protection.
-                </p>
+                <p className="card-text">Trade Secrets refer to intellectual property rights that protect confidential information.</p>
               </div>
             </div>
           </div>
@@ -139,47 +144,53 @@ export default function IPRHomePage() {
 
         {/* Video Section */}
         <div className="text-center my-4">
-          <h2>Watch Our Videos</h2>
+          <h2>Some Videos</h2>
           <div className="row justify-content-center">
             <div className="col-md-4 mb-4">
-              <iframe
-                width="100%"
-                height="215"
-                src="https://www.youtube.com/embed/S7LRj29KDT4" // Corrected format for the first video
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-              <p className="mt-2">SignUp</p> {/* Caption added below the video */}
+              <video 
+                ref={(el) => videoRefs.current[0] = el} 
+                width="100%" height="215" controls>
+                <source src={require('../assets/images/Recent_Developments_in_IP_Law.mp4')} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <p className="mt-2">Recent Developments in IP Law</p>
             </div>
             <div className="col-md-4 mb-4">
-              <iframe
-                width="100%"
-                height="215"
-                src="https://www.youtube.com/embed/kyGflgxxlrw" // Replace with your second video ID
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-              <p className="mt-2">Login</p> {/* Caption added below the video */}
+              <video 
+                ref={(el) => videoRefs.current[1] = el} 
+                width="100%" height="215" controls>
+                <source src={require('../assets/images/Need_of_IPR.mp4')} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <p className="mt-2">Need of IPR</p>
             </div>
             <div className="col-md-4 mb-4">
-              <iframe
-                width="100%"
-                height="215"
-                src="https://www.youtube.com/embed/BIkYYLnOf5g" // Replace with your third video ID
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-              <p className="mt-2">Other</p> {/* Caption added below the video */}
+              <video 
+                ref={(el) => videoRefs.current[2] = el} 
+                width="100%" height="215" controls>
+                <source src={require('../assets/images/intro.mp4')} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <p className="mt-2">Introduction to IPR</p>
             </div>
           </div>
         </div>
+
       </div>
+      <style jsx>{`
+        .card {
+          transition: transform 0.2s;
+        }
+        .card:hover {
+          transform: scale(1.02);
+        }
+        .bg-primary {
+          background-color: #007bff !important;
+        }
+        .border-info {
+          border-color: #17a2b8 !important;
+        }
+      `}</style>
     </div>
   );
 }
