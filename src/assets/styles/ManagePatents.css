@@ -1,0 +1,30 @@
+/* Manage Patents Component Specific Styles */
+.manage-patents-card {
+    border: none; /* Remove border for a cleaner look */
+    border-radius: 10px; /* Rounded corners for cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  /* Hover Effect */
+  .manage-patents-card:hover {
+    background-color: #f0f8ff; /* Light blue background on hover */
+    transform: translateY(-5px); /* Slightly lift the card */
+  }
+  
+  /* Card Body Styles */
+  .manage-patents-card .card-body {
+    padding: 20px; /* More padding for content */
+  }
+  
+  /* Card Title Styles */
+  .manage-patents-card .card-title {
+    font-weight: bold; /* Make the card title bold */
+    margin-bottom: 15px; /* Spacing below the title */
+  }
+  
+  /* Card Text Styles */
+  .manage-patents-card .card-text {
+    margin-bottom: 15px; /* Spacing below the text */
+  }
+  
