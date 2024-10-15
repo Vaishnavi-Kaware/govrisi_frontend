@@ -23,19 +23,13 @@ export default function IPRHomePage() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" to="#">ABOUT US</Link>
+                <Link className="nav-link active" to="/manage-patents">Manage Patents</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/research">RESEARCH</Link>
+                <Link className="nav-link active" to="/patent-track">Patent Track</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="#">START-UPS</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="#">INNOVATION</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" to="/ipr">IPR</Link>
+                <Link className="nav-link active" to="/ipr-status">IPR Status</Link>
               </li>
             </ul>
             <form className="d-flex" role="search">
@@ -157,6 +151,7 @@ export default function IPRHomePage() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+              <p className="mt-2">SignUp</p> {/* Caption added below the video */}
             </div>
             <div className="col-md-4 mb-4">
               <iframe
@@ -168,6 +163,7 @@ export default function IPRHomePage() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+              <p className="mt-2">Login</p> {/* Caption added below the video */}
             </div>
             <div className="col-md-4 mb-4">
               <iframe
@@ -179,17 +175,11 @@ export default function IPRHomePage() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
+              <p className="mt-2">Other</p> {/* Caption added below the video */}
             </div>
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-light text-center text-lg-start">
-        <div className="text-center p-3">
-          © 2024 Copyright: Your Organization
-        </div>
-      </footer>
     </div>
   );
 }
