@@ -16,6 +16,15 @@ import ManagePatents from './components/ManagePatents'; // Import the ManagePate
 import IPRStatusPage from './components/IPRStatusPage';
 import PatentTrack from './components/PatentTrack';
 import ProtectedRoute from "./components/Research/ProtectedRoute";
+import Geographical_Indication from './components/Geographical_Indication';
+import Industrial_Designs from './components/Industrial_Designs';
+import Trade_Secret from './components/Trade_Secret';
+import TrademarkPage from './components/TrademarkPage';
+import PatentPage from './components/PatentPage';
+import CopyrightPage from './components/CopyrightPage';
+import StartupHomePage from './components/StartupHomePage'; 
+
+
 
 function App() {
 
@@ -38,6 +47,14 @@ function App() {
           <Route path="/manage-patents" element={<ManagePatents />} /> {/* Add Manage Patents Route */}
           <Route path="/ipr-status" element={<IPRStatusPage />} /> {/* Add this line */}
           <Route path="/Patent-Track" element={<PatentTrack />} />
+          <Route path="/geographical-indication" element={<Geographical_Indication />} /> 
+          <Route path="/industrial_designs" element={<Industrial_Designs />} />
+          <Route path="/trade_secret" element={<Trade_Secret />} />
+          <Route path="/trademarkpage" element={<TrademarkPage />} />
+          <Route path="/patentpage" element={<PatentPage />} />
+          <Route path="/copyrightpage" element={<CopyrightPage/>} />
+          <Route path="/startup" element={<StartupHomePage />} />
+
         </Routes>
       </Router>
       <Footer />

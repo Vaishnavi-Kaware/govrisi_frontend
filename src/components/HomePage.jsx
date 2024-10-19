@@ -25,7 +25,7 @@ export default function HomePage() {
                 <Link className="nav-link active" to="/research">RESEARCH</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="#">START-UPS</Link>
+                <Link className="nav-link active" to="/startup">STARTUP</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link active" to="#">INNOVATION</Link>
