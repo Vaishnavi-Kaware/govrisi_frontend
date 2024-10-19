@@ -1,0 +1,46 @@
+.App {
+    text-align: left; /* Ensure text alignment is to the left */
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+  .navbar {
+    background-color: #f8f9fa;
+    padding: 1rem;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .navbar li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  .video-container {
+    display: flex; /* Flexbox layout to arrange videos side by side */
+    justify-content: center; /* Center the videos horizontally */
+    margin: 20px auto; /* Center the container */
+  }
+  
+  iframe {
+    width: 560px; /* Fixed width for the video */
+    height: 315px; /* Fixed height for the video */
+    margin: 0 10px; /* Space between the videos */
+  }
+  
+  /* New styles for subheadings */
+  h2, h3 {
+    color: blue; /* Change color to blue */
+  }
+  

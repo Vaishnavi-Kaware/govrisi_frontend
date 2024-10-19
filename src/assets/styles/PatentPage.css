@@ -1,0 +1,27 @@
+.patent-steps {
+  padding: 40px 0;
+  background-color: #f8f9fa;
+}
+
+.steps-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.step {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.step h3 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+}
+
+.step p {
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: #6c757d;
+}

@@ -1,0 +1,31 @@
+.main {
+  padding: 20px;
+  text-align: left; /* Align text to the left */
+}
+
+.heading {
+  color: blue; /* Set heading color to blue */
+  margin-bottom: 10px; /* Optional margin below the heading */
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.image {
+  width: 300px; /* Increased width for the images */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 10px; /* Space between images */
+}
+
+.videoContainer {
+  display: flex;
+  justify-content: space-around; /* Arrange videos in one line */
+  margin-top: 40px; /* Space above the video section */
+}
+
+.subheading {
+  color: blue; /* Set subheading color to blue */
+}

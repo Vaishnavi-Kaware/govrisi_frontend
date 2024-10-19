@@ -92,6 +92,7 @@ export default function IPRHomePage() {
               <div className="card-body">
                 <h5 className="card-title">Patents</h5>
                 <p className="card-text">A patent is an exclusive legal right granted for an invention, giving the patent owner control over how the invention is used.</p>
+                <Link to="/PatentPage" className="btn btn-primary">Learn More</Link> 
               </div>
             </div>
           </div>
@@ -101,6 +102,7 @@ export default function IPRHomePage() {
               <div className="card-body">
                 <h5 className="card-title">Copyright</h5>
                 <p className="card-text">Copyright is a legal term that refers to the rights creators hold over their literary and artistic works.</p>
+                <Link to="/CopyrightPage" className="btn btn-primary">Learn More</Link> 
               </div>
             </div>
           </div>
@@ -110,6 +112,7 @@ export default function IPRHomePage() {
               <div className="card-body">
                 <h5 className="card-title">Trademarks</h5>
                 <p className="card-text">Trademarks are symbols, words, or signs used to distinguish the goods or services of one enterprise from those of others.</p>
+                <Link to="/trademarkpage" className="btn btn-primary">Learn More</Link> 
               </div>
             </div>
           </div>
@@ -119,6 +122,7 @@ export default function IPRHomePage() {
               <div className="card-body">
                 <h5 className="card-title">Industrial Designs</h5>
                 <p className="card-text">Industrial Designs refer to the ornamental or aesthetic aspects of an article.</p>
+                <Link to="/Industrial_Designs" className="btn btn-primary">Learn More</Link> 
               </div>
             </div>
           </div>
@@ -128,6 +132,7 @@ export default function IPRHomePage() {
               <div className="card-body">
                 <h5 className="card-title">Geographical Indications</h5>
                 <p className="card-text">Geographical Indications are signs used on goods that have a specific geographical origin.</p>
+                <Link to="/geographical-indication" className="btn btn-primary">Learn More</Link> 
               </div>
             </div>
           </div>
@@ -137,6 +142,8 @@ export default function IPRHomePage() {
               <div className="card-body">
                 <h5 className="card-title">Trade Secrets</h5>
                 <p className="card-text">Trade Secrets refer to intellectual property rights that protect confidential information.</p>
+                <Link to="/trade_secret"className="btn btn-primary">Learn More</Link>
+
               </div>
             </div>
           </div>
@@ -194,3 +201,6 @@ export default function IPRHomePage() {
     </div>
   );
 }
+
+
+
