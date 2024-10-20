@@ -1,57 +1,67 @@
 import React, { useEffect, useRef } from "react";
-import "./ImageSlider.css";
+import "../assets/styles/textslider.css"; // Assuming CSS is stored in this file
 
 const ImageSlider = () => {
-  const sliderRef = useRef(null);
+  const marqueeRef = useRef(null);
 
   useEffect(() => {
-    const slider = sliderRef.current;
+    // Function to create the marquee effect
+    const createMarquee = ({ duration = 80000, padding = 20 }) => {
+      const marquee = marqueeRef.current;
+      let distance = marquee.scrollWidth;
+      let marqueeContent = marquee.children;
 
-    // Slider scrolling logic
-    const startSlider = () => {
-      let scrollAmount = slider.scrollWidth;
-      const sliderWidth = slider.clientWidth;
-
-      const interval = setInterval(() => {
-        scrollAmount -= 1; // Speed of the scrolling
-        slider.scrollLeft = scrollAmount;
-
-        if (scrollAmount <= 0) {
-          scrollAmount = slider.scrollWidth; // Reset to start once content is fully scrolled
+      const animate = () => {
+        const startPosition = marquee.scrollLeft;
+        if (startPosition >= distance) {
+          marquee.scrollLeft = 0;
+        } else {
+          marquee.scrollLeft += 1;
         }
-      }, 20); // Controls speed
+      };
 
-      return () => clearInterval(interval);
+      let interval = setInterval(animate, duration / distance);
+
+      return () => {
+        clearInterval(interval);
+      };
     };
 
-    startSlider();
+    // Call the createMarquee function to start the marquee effect
+    const stopMarquee = createMarquee({ duration: 80000, padding: 20 });
+
+    // Cleanup function
+    return () => {
+      stopMarquee();
+    };
   }, []);
 
   return (
-    <div className="slider-container">
-      <div className="slider-sibling">Image Gallery</div>
-      <div className="slider" ref={sliderRef}>
-        <div className="slider-content">
-          <div className="slider-content-items">
-            <p>
-              <b>&raquo;</b> 1 Image description goes here
-            </p>
-          </div>
-          <div className="slider-content-items">
-            <p>
-              <b>&raquo;</b> 2 Another image description
-            </p>
-          </div>
-          <div className="slider-content-items">
-            <p>
-              <b>&raquo;</b> 3 Some interesting image details
-            </p>
-          </div>
-          <div className="slider-content-items">
-            <p>
-              <b>&raquo;</b> 4 Image details here
-            </p>
-          </div>
+    <div className="container">
+      <div className="marquee-sibling">
+        Breaking News
+      </div>
+      <div className="marquee" ref={marqueeRef}>
+        <div className="marquee-content-items">
+          <p><b>&raquo;</b> Breaking news: Stock market crashes as inflation rises globally.</p>
+        </div>
+        <div className="marquee-content-items">
+          <p><b>&raquo;</b> Tech news: New iPhone model with a revolutionary battery life released.</p>
+        </div>
+        <div className="marquee-content-items">
+          <p><b>&raquo;</b> Weather alert: Heavy rainfall expected across coastal regions tomorrow.</p>
+        </div>
+        <div className="marquee-content-items">
+          <p><b>&raquo;</b> Sports: Local team wins the championship after an intense final.</p>
+        </div>
+        <div className="marquee-content-items">
+          <p><b>&raquo;</b> Health: New studies show benefits of daily exercise for mental health.</p>
+        </div>
+        <div className="marquee-content-items">
+          <p><b>&raquo;</b> Global events: World leaders meet to discuss climate change solutions.</p>
+        </div>
+        <div className="marquee-content-items">
+          <p><b>&raquo;</b> Entertainment: Popular movie breaks all-time box office records.</p>
         </div>
       </div>
     </div>
