@@ -3,17 +3,19 @@ import Header from "../Header";
 import "../../assets/styles/ResearchStyle/SignInForm.css";
 import { useNavigate} from "react-router-dom";
 
-const SignInForm = ({ setIsAuthenticated }) => {
-  const navigate=useNavigate();
+const SignInForm = () => {
+  const navigate = useNavigate();
   const [publicUser, setPublicUser] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState({}); // To track validation errors
 
+  // Handle input changes
   const handlePublicInputChange = (e) => {
     const { name, value } = e.target;
     setPublicUser({ ...publicUser, [name]: value });
     setErrors({ ...errors, [name]: "" }); // Clear error when the user starts typing
   };
 
+  // Validate fields before submission
   const validateFields = () => {
     let valid = true;
     const newErrors = {};
@@ -32,6 +34,7 @@ const SignInForm = ({ setIsAuthenticated }) => {
     return valid;
   };
 
+  // Handle login on button click
   const handlePublicLogin = async () => {
     if (!validateFields()) return; // Stop if validation fails
 
@@ -42,22 +45,20 @@ const SignInForm = ({ setIsAuthenticated }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(publicUser),
-        credentials: "include",
+        credentials: "include", // Ensure cookies are sent with request
       });
 
       if (response.ok) {
-        setIsAuthenticated(true);
+        // Redirect to profile page if login is successful
         navigate("/research-profile");
-        // Redirect or handle successful login logic here
       } else {
         const error = await response.json();
-        setErrors({ form: error.message });
+        setErrors({ form: error.message || "Invalid credentials." });
       }
     } catch (err) {
-      setErrors({ form: "An error occurred. Please try again." });
+      setErrors({ form: `An error occurred. Please try again. ${err}` });
     }
   };
-
   return (
     <div>
       <Header />
