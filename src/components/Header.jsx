@@ -9,18 +9,18 @@ const Header = () => {
       {/* Left Section for Profile */}
       <div className="header-left">
         <img src={profile} alt="Profile" className="profile-icon" />
+        <h1></h1>
       </div>
 
       {/* Center Section for Future Additions */}
-      <div className="header-center">
-        <h1>Header Area</h1>
+      <div className="header-center-first">
+        <h1>Gujarat government</h1>
+        <p><h1>Research/IPR/Start-ups Portal</h1></p> 
         {/* You can add more elements here */}
       </div>
+      
 
-      {/* Right Section for Logo */}
-      <div className="header-right">
-        <img src={logo} alt="Government Logo" className="logo-icon" />
-      </div>
+      
     </header>
   );
 };

@@ -2,8 +2,12 @@
 {
     margin-left: 0%;
 }
-#nav-item
+.nav-item
 {
     text-decoration: solid;
+    font-family: "Roboto Slab", serif;
     
+}
+.container-fluid{
+font-family: "Roboto Slab", serif;
 }

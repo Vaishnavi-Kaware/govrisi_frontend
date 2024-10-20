@@ -1,4 +1,6 @@
 import ImageSlider from './ImageSlider';
+import TextSlider from './textslider';
+import NotificationBoard from './notificationBoard';
 import React from 'react';
 import Header from './Header';
 import { Link } from 'react-router-dom';
@@ -19,7 +21,7 @@ export default function HomePage() {
                 <Link className="nav-link active" to="#">ABOUT US</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/contactUs">ContactUs</Link>
+                <Link className="nav-link active" to="/contactUs">CONTACT US</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link active" to="/research">RESEARCH</Link>
@@ -48,6 +50,8 @@ export default function HomePage() {
       </nav>
 
       <ImageSlider />
+      <NotificationBoard />
+      <TextSlider />
     </div>
   );
 }

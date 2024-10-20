@@ -26,6 +26,8 @@ import StartupHomePage from './components/StartupHomePage';
 
 
 
+import ImageSlider from './components/ImageSlider';
+
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -57,7 +59,7 @@ function App() {
 
         </Routes>
       </Router>
-      <Footer />
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,73 @@
+body {
+    background-color: black;
+    margin-left: 0px;
+    padding: 0;
+    overflow-x: hidden;
+    /* Prevents horizontal scrollbars */
+}
+
+.container {
+    max-width: 100vw;
+    /* 100% of the viewport width */
+    
+    background: #fefefe;
+    overflow: hidden;
+    box-sizing: border-box;
+    height: 45px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    margin-left: 0px;
+}
+
+p {
+    margin: 0;
+    line-height: 35px;
+}
+
+.marquee-sibling {
+    padding: 0;
+    background: #ddd;
+    width: 20%;
+    /* 20% width for Breaking News section */
+    height: 45px;
+    line-height: 42px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.marquee {
+    width: 80%;
+    /* 80% width for scrolling text */
+    white-space: nowrap;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.marquee-content-items {
+    display: inline-block;
+    padding: 5px;
+    margin: 0;
+    height: 45px;
+}
+
+.marquee-content-items p {
+    display: inline-block;
+    line-height: 35px;
+    color: #000;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.marquee-content-items p:after {
+    content: "|";
+    margin: 0 1em;
+    color: #000;
+}
