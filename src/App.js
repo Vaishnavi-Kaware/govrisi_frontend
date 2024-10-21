@@ -8,6 +8,7 @@ import Researchhomepage from './components/Research/Researchhomepage'; // Create
 import SignIn from './components/Research/SignInForm';
 import ResearchForm from './components/Research/ResearchForm';
 import Researcherprofile from './components/Research/ResearcherProfile';
+import ResearchProjectDetail from './components/Research/ProjectDetail';
 import ResearchUpdate from './components/Research/ResearchUpdate';
 import ReasearchSearchWindow from './components/Research/ReasearchSearchWindow';
 import ContactUs from './components/ContactUs';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/research-profile" element={<Researcherprofile />} />
           <Route path="/research-update" element={<ResearchUpdate />} />
+          <Route path="/research-project-detail/:projectId" element={<ResearchProjectDetail />} />
           <Route path="/ReasearchSearchPage" element={<ReasearchSearchWindow />} />
           <Route path="/ipr" element={<IPRHomePage />} /> {/* Add IPR Home Page Route */}
           <Route path="/contactUs" element={<ContactUs />} />
@@ -55,7 +57,7 @@ function App() {
 
         </Routes>
       </Router>
-      <Footer />
+{/*       <Footer /> */}
     </>
   );
 }

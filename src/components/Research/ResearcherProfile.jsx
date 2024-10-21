@@ -102,7 +102,7 @@ const ResearcherProfile = () => {
           <ul className="list-group">
             <li className="list-group-item bg-secondary text-light">Email: {data.user.email}</li>
             <li className="list-group-item bg-secondary text-light">Username: {data.user.username}</li>
-            <li className="list-group-item bg-secondary text-light">Institute: {data.user.institute}</li>
+            <li className="list-group-item bg-secondary text-light">Institute: {data.user.institution}</li>
             <li className="list-group-item bg-secondary text-light">Status: {data.user.status}</li>
             <li className="list-group-item bg-secondary text-light">Started: {data.user.start.split("T")[0]}</li>
           </ul>

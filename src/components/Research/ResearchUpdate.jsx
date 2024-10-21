@@ -36,10 +36,10 @@ const UpdateProfile = () => {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    const maxFileSize = 5 * 1024 * 1024; // 5MB limit
+    const maxFileSize = 1024 * 1024; // 5MB limit
 
     if (selectedFile && selectedFile.size > maxFileSize) {
-      setError('File size must be less than 5MB.');
+      setError('File size must be less than 1MB.');
       setFile(null); // Reset the file state
     } else {
       setError('');
@@ -60,10 +60,10 @@ const UpdateProfile = () => {
       setError('Password is required.');
       return false;
     }
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters long.');
-      return false;
-    }
+    // if (password.length < 6) {
+    //   setError('Password must be at least 6 characters long.');
+    //   return false;
+    // }
     if (!status) {
       setError('Please select a status.');
       return false;
@@ -93,7 +93,7 @@ const UpdateProfile = () => {
       if (response.ok) {
         setSuccess('Profile updated successfully!');
         setError('');
-        navigate('/profile');
+        navigate('/research-profile');
       } else {
         setError(data.message || 'Update failed');
       }
@@ -105,6 +105,7 @@ const UpdateProfile = () => {
   if (isLoading) return <p>Loading...</p>;
 
   return (
+    <div className="app-container">
     <div className="container mt-5">
       <h2>Update Profile</h2>
       {error && <p className="alert alert-danger">{error}</p>}
@@ -157,11 +158,12 @@ const UpdateProfile = () => {
             id="file"
             onChange={handleFileChange}
           />
-          <small className="text-muted">Max size: 5MB</small>
+          <small className="text-muted">Max size: 1MB</small>
         </div>
 
         <button type="submit" className="btn btn-primary">Update</button>
       </form>
+    </div>
     </div>
   );
 };

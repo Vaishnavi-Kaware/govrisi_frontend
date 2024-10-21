@@ -182,19 +182,20 @@ const ResearchForm = () => {
   
 
   return (
+    <div className="app-container">
     <div className="container mt-4">
       <div className="text-center mb-4">
         <h1>Enhancing Research, IPR, Innovation & Start-ups in Gujarat</h1>
       </div>
 
-      <h2 className="mb-4 text-center">Fill out the details of your research project below:</h2>
+      <h2 className="mb-4 text-center formh2">Fill out the details of your research project below:</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form class="researchform" onSubmit={handleSubmit}>
         <fieldset className="border p-3 mb-4">
           <legend className="w-auto">Project Details</legend>
 
           <div className="mb-3">
-            <label className="form-label">Project Title:</label>
+            <label className="form-label rlabel">Project Title:</label>
             <input
               type="text"
               name="title"
@@ -208,7 +209,7 @@ const ResearchForm = () => {
           {errors.title && <p className="text-danger">{errors.title}</p>}
 
           <div className="mb-3">
-            <label className="form-label">Description:</label>
+            <label className="form-label rlabel">Description:</label>
             <textarea
               name="description"
               className="form-control"
@@ -220,7 +221,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Status:</label>
+            <label className="form-label rlabel">Status:</label>
             <select
               name="status"
               className="form-select"
@@ -233,7 +234,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Institution:</label>
+            <label className="form-label rlabel">Institution:</label>
             <input
               type="text"
               name="institution"
@@ -246,7 +247,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Email:</label>
+            <label className="form-label rlabel">Email:</label>
             <input
               type="email"
               name="email"
@@ -259,7 +260,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Start Date:</label>
+            <label className="form-label rlabel">Start Date:</label>
             <input
               type="date"
               name="startDate"
@@ -271,7 +272,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">End Date:</label>
+            <label className="form-label rlabel">End Date:</label>
             <input
               type="date"
               name="endDate"
@@ -290,7 +291,7 @@ const ResearchForm = () => {
           <legend className="w-auto">Project Researchers</legend>
 
           <div className="mb-3">
-            <label className="form-label">Number of Researchers:</label>
+            <label className="form-label rlabel">Number of Researchers:</label>
             <input
               type="number"
               className="form-control"
@@ -304,7 +305,7 @@ const ResearchForm = () => {
           {researchers.slice(0, numResearchers).map((researcher, index) => (
             <div key={index}>
               <div className="mb-3">
-                <label className="form-label">Researcher {index + 1} Name:</label>
+                <label className="form-label rlabel">Researcher {index + 1} Name:</label>
                 <input
                   type="text"
                   name="name"
@@ -317,7 +318,7 @@ const ResearchForm = () => {
               </div>
 
               <div className="mb-3">
-            <label className="form-label">Email:</label>
+            <label className="form-label rlabel">Email:</label>
             <input
               type="email"
               name="remail"
@@ -330,7 +331,7 @@ const ResearchForm = () => {
           </div>
 
               <div className="mb-3">
-                <label className="form-label">Research Field:</label>
+                <label className="form-label rlabel">Research Field:</label>
                 <input
                   type="text"
                   name="researchField"
@@ -342,7 +343,7 @@ const ResearchForm = () => {
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Role:</label>
+                <label className="form-label rlabel">Role:</label>
                 <input
                   type="text"
                   name="role"
@@ -361,7 +362,7 @@ const ResearchForm = () => {
 
           {/* Add username input */}
           <div className="mb-3">
-            <label className="form-label">Username:</label>
+            <label className="form-label rlabel">Username:</label>
             <input
               type="text"
               name="username"
@@ -374,7 +375,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Password:</label>
+            <label className="form-label rlabel">Password:</label>
             <input
               type="password"
               name="password"
@@ -387,7 +388,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Confirm Password:</label>
+            <label className="form-label rlabel">Confirm Password:</label>
             <input
               type="password"
               name="confirmPassword"
@@ -402,7 +403,7 @@ const ResearchForm = () => {
           {errors.passwordError && <p className="text-danger">{errors.passwordError}</p>}
 
           <div className="mb-3">
-    <label className="form-label">Upload File:</label>
+    <label className="form-label rlabel">Upload File:</label>
     <input 
       type="file" 
       name="projectFile" 
@@ -426,6 +427,7 @@ const ResearchForm = () => {
         </div>
       </form>
 
+    </div>
     </div>
   );
 };
