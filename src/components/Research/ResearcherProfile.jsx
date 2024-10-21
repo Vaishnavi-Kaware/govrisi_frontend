@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../assets/styles/ResearchStyle/ResearcherProfile.css';
 import govLogo from '../../assets/images/gov-logo.png';
@@ -9,27 +11,104 @@ import img4 from '../../assets/images/img4.jpeg';
 import img5 from '../../assets/images/img5.jpeg';
 
 const ResearcherProfile = () => {
+  const [data, setData] = useState(null); // Store user data
+  const [loading, setLoading] = useState(true); // Track loading state
+  const [error, setError] = useState(null); // Track any errors
+  const navigate = useNavigate();
+
+  // Fetch user data on component mount
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/research/profile', {
+          method: 'GET',
+          credentials: 'include', // Ensure session cookies are sent
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setData(data); 
+        } else {
+          navigate('/signin'); // Redirect to login if unauthorized
+        }
+      } catch (err) {
+        setError('Failed to fetch user data. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [navigate]);
+
+  useEffect(() => {
+    if (data) {
+      console.log('User data updated:', data.user.title); // Log updated user data
+    }
+  }, [data]);
+
+  // Handle Logout
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/research/logout', {
+        method: 'POST',
+        credentials: 'include', // Send cookies with the request
+      });
+
+      if (response.ok) {
+        navigate('/signin'); // Redirect to sign-in page after logout
+      } else {
+        console.error('Logout failed');
+      }
+    } catch (err) {
+      console.error('Error during logout', err);
+    }
+  };
+
+  const openFileFromServer = async (fileId) => {
+    try {
+      const response = await fetch(`http://localhost:4000/open/file/${fileId}`, {
+        method: 'GET',
+        credentials: 'include', // Send cookies for authentication
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch the file');
+      }
+  
+      const blob = await response.blob(); // Convert to Blob
+      const fileUrl = URL.createObjectURL(blob); // Create a downloadable URL
+  
+      window.open(fileUrl); // Open the file in a new tab
+    } catch (error) {
+      console.error('Error opening file:', error);
+    }
+  };
+
+  // Loading and error states
+  if (loading) return <p>Loading profile...</p>; // Show loading state
+  if (error) return <p>{error}</p>; // Show error if fetching failed
+  if (!data) return <p>No user data available.</p>; // Handle case where user is null
+
   return (
     <div className="container-fluid researcher-page">
       <div className="row">
         {/* Sidebar */}
         <div className="col-md-3 bg-secondary text-light sidebar p-4">
           <div className="text-center my-4">
-            <div className="profile-circle d-flex justify-content-center align-items-center mx-auto mb-3">
-              <span className="profile-letter">V</span>
-            </div>
-            <h5>Vaishnavi</h5>
+            <h5>{data.user.title}</h5>
           </div>
           <ul className="list-group">
-            <li className="list-group-item bg-secondary text-light">Email: vaishnavi@example.com</li>
-            <li className="list-group-item bg-secondary text-light">Username: vaishnavi123</li>
-            <li className="list-group-item bg-secondary text-light">Role: Researcher</li>
-            <li className="list-group-item bg-secondary text-light">Research Title: Enhancing Innovation</li>
-            <li className="list-group-item bg-secondary text-light">Institute: SPPU</li>
-            <li className="list-group-item bg-secondary text-light">Funding: Government Grant</li>
-            <li className="list-group-item bg-secondary text-light">Research Duration: 2023-2025</li>
+            <li className="list-group-item bg-secondary text-light">Email: {data.user.email}</li>
+            <li className="list-group-item bg-secondary text-light">Username: {data.user.username}</li>
+            <li className="list-group-item bg-secondary text-light">Institute: {data.user.institution}</li>
+            <li className="list-group-item bg-secondary text-light">Status: {data.user.status}</li>
+            <li className="list-group-item bg-secondary text-light">Started: {data.user.start.split("T")[0]}</li>
           </ul>
-          <button className="btn btn-danger w-100 mt-4">Logout</button>
+          <button onClick={handleLogout} className="btn btn-danger w-100 mt-4">
+        Logout
+      </button>
         </div>
 
         {/* Main Content */}
@@ -50,7 +129,7 @@ const ResearcherProfile = () => {
                   key={index}
                   src={img}
                   alt={`Image ${index + 2}`}
-                  className="img-fluid mx-0" // Changed to mx-0 to remove space between images
+                  className="img-fluid mx-0"
                   style={{ height: '90px', width: '100px', transition: 'transform 0.3s' }}
                   onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
                   onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
@@ -65,15 +144,7 @@ const ResearcherProfile = () => {
               <a className="navbar-brand text-white" href="#">
                 Research Portal
               </a>
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
               <div className="collapse navbar-collapse" id="navbarNav">
@@ -89,9 +160,7 @@ const ResearcherProfile = () => {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link text-white" href="#">
-                      Publications
-                    </a>
+                  <Link className="nav-link active" to="/research-update">Update</Link>
                   </li>
                   <li className="nav-item dropdown">
                     <a
@@ -120,34 +189,33 @@ const ResearcherProfile = () => {
           <div className="card my-4 p-4 shadow" style={{ backgroundColor: '#f8f9fa' }}>
             <h4 className="card-title">Research Information</h4>
             <div className="card-body">
-              <p className="card-text"><strong>Title:</strong> Enhancing Research, IPR, Innovation & Start-ups in Gujarat</p>
-              <p className="card-text"><strong>Description:</strong> This project aims to streamline and enhance the innovation landscape in Gujarat by promoting effective research practices and supporting start-ups in the AYUSH sector.</p>
-              
-              {/* Added fields */}
-              <p className="card-text"><strong>Milestones:</strong> Initial Setup, Mid-Project Evaluation, Final Analysis</p>
-              <p className="card-text"><strong>Funding and Resources:</strong> Rs. 50 Lakhs, Access to state-funded labs and libraries</p>
-              <p className="card-text"><strong>Publications:</strong> 3 Papers Published in International Journals</p>
-              <p className="card-text"><strong>Number of Researchers:</strong> 5</p>
-              <ul>
-                <li><strong>Name:</strong> Dr. A. Patel (Start Date: Jan 2023, End Date: Dec 2023)</li>
-                <li><strong>Name:</strong> Dr. B. Mehta (Start Date: Feb 2023, End Date: Jan 2024)</li>
-                <li><strong>Name:</strong> Dr. C. Kumar (Start Date: Mar 2023, End Date: Feb 2024)</li>
-                <li><strong>Name:</strong> Dr. D. Joshi (Start Date: Apr 2023, End Date: Mar 2024)</li>
-                <li><strong>Name:</strong> Dr. E. Shah (Start Date: May 2023, End Date: Apr 2024)</li>
-              </ul>
-
-              {/* Updated buttons */}
-              <div className="d-flex justify-content-between mt-3">
-                <button className="btn btn-primary" title="View PDF">PDF View</button>
-                <button className="btn btn-success" title="Update Research Information">Update</button>
-              </div>
+              <p className="card-text"><strong>Title:</strong> {data.user.title}</p>
+              <p className="card-text"><strong>Description:</strong> {data.user.description}</p>
+              <p className="card-text"><strong>Start date:</strong> {data.user.start.split("T")[0]}</p>
+              <p className="card-text"><strong>Expected end date:</strong> {data.user.end.split("T")[0]}</p>
+              <p className="card-text"><strong>Number of Researchers:</strong> {data.user.researchers.length}</p>
+              {data.researchers.map((researcher, index) => (
+              <div className="cardr">
+              <h2 className="card-titler">{researcher.name}</h2>
+              <p className="card-infor"><strong>Email:</strong> {researcher.email}</p>
+              <p className="card-infor"><strong>Role:</strong> {researcher.role}</p>
+              <p className="card-infor"><strong>Field:</strong> {researcher.field}</p>
             </div>
+          ))}
+            </div>
+            <button
+              type="button"
+              className="view-file-button"
+              onClick={() => openFileFromServer(data?.user?.fileId)} // Pass fileId from user data
+            >
+              View File
+            </button>
+
           </div>
         </div>
       </div>
-      
     </div>
   );
 };
 
-export default ResearcherProfile;  
+export default ResearcherProfile;

@@ -31,37 +31,32 @@ const ResearchForm = () => {
 
   // Handle file upload
   const handleFileChange = (e) => {
-    const file = e.target.files[0];// Get the uploaded file
+    const file = e.target.files[0];
     if (file) {
-      setFormData((prev) => ({
-        ...prev,
-        projectFile: file,
-        uploadedFile: file, // Also set it to uploadedFile
-      }));
+      if (file.size > 1024 * 1024) {
+        setErrors((prev) => ({
+          ...prev,
+          fileError: "File size should not exceed 1MB.",
+        }));
+        setFormData((prev) => ({
+          ...prev,
+          projectFile: null, // Reset the file if invalid
+        }));
+      } else {
+        setErrors((prev) => ({ ...prev, fileError: "" }));
+        setFormData((prev) => ({
+          ...prev,
+          projectFile: file,
+        }));
+      }
     }
- // Set the file in formData
   };
+  
 
   // Function to open the uploaded file
   const openFile = () => {
     const fileUrl = URL.createObjectURL(formData.uploadedFile);
     window.open(fileUrl); // Open the file in a new tab
-  };
-
-  const openFileFromServer = async () => {
-    try {
-      const response = await fetch(`http://localhost:4000/open/file`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch the file");
-      }
-  
-      const blob = await response.blob(); // Convert the response to a Blob
-      const fileUrl = URL.createObjectURL(blob); // Create a URL for the file
-  
-      window.open(fileUrl); // Open the file in a new tab
-    } catch (error) {
-      console.error("Error opening file:", error);
-    }
   };
   
 
@@ -92,77 +87,94 @@ const ResearchForm = () => {
   };
 
   const validateForm = () => {
-    const newErrors = {};
-
-    // Validate start and end date
+    const errors = {};
+    const usernameRegex = /^[A-Za-z0-9_]{1,15}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+  
+    // Required field validations
+    if (!formData.title) errors.title = "Title is required.";
+    if (!formData.email) errors.email = "Email is required.";
+    if (!formData.projectFile) errors.fileError = "Please upload a valid project file.";
+    if (!formData.username) errors.usernameError = "Username is required.";
+    if (!formData.password) errors.passwordError = "Password is required.";
+    if (!formData.confirmPassword) errors.passwordError = "Confirm Password is required.";
+    if (!formData.startDate) errors.dateError = "Start date is required.";
+    if (!formData.endDate) errors.dateError = "End date is required.";
+  
+    // Additional Date Validation
     const startDate = new Date(formData.startDate);
     const endDate = new Date(formData.endDate);
-
-    if (startDate >= endDate) {
-      newErrors.dateError = "Start date must be before the end date.";
+    if (startDate >= endDate) errors.dateError = "Start date must be before the end date.";
+  
+    // Password Validation
+    if (formData.password && !passwordRegex.test(formData.password)) {
+      errors.passwordError =
+        "Password must contain 1 uppercase letter, 1 symbol, no spaces, 1 number, and be 8-15 chars long.";
+    } else if (formData.password !== formData.confirmPassword) {
+      errors.passwordError = "Password and Confirm Password must match.";
     }
-
-    // Validate password match
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.passwordError = "Password and Confirm Password must match.";
+  
+    // Username Validation
+    if (formData.username && !usernameRegex.test(formData.username)) {
+      errors.usernameError = "Username can be max 15 chars and contain only letters, numbers, or underscores.";
     }
-
-    setErrors(newErrors);
-
-    return Object.keys(newErrors).length === 0;
+  
+    setErrors(errors);
+    return Object.keys(errors).length === 0; // Returns true if there are no errors
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
   
-    if (validateForm()) {
-      try {
-        const submissionData = new FormData();
+    if (!validateForm()) {
+      setLoading(false); // Stop loading if validation fails
+      return;
+    }
   
-        // Append form fields to FormData
-        
-        submissionData.append("formData", JSON.stringify(formData));
+    try {
+      const submissionData = new FormData();
   
-        // Append researchers array as JSON
-        submissionData.append("researchers", JSON.stringify(researchers.slice(0, numResearchers)));
+      // Append form fields and file to FormData
+      submissionData.append("formData", JSON.stringify(formData));
+      submissionData.append("researchers", JSON.stringify(researchers.slice(0, numResearchers)));
+      submissionData.append("projectFile", formData.projectFile);
   
-        // Append the uploaded file
-        submissionData.append("projectFile", formData.projectFile);
+      const response = await fetch("http://localhost:4000/research/registration", {
+        method: "POST",
+        body: submissionData,
+      });
   
-        const response = await fetch("http://localhost:4000/research/registration", {
-          method: "POST",
-          body: submissionData, // No need to set Content-Type header
+      const result = await response.json();
+  
+      if (response.ok) {
+        // Reset form fields on successful submission
+        setFormData({
+          title: "",
+          email: "",
+          username: "",
+          status: "ongoing",
+          institution: "",
+          startDate: "",
+          endDate: "",
+          password: "",
+          confirmPassword: "",
+          projectFile: null,
         });
-        const result = await response.json(); // Parse the JSON response
-
-        if (response.ok) {
-          // Reset form state
-          setFormData({
-            title: "",
-            email: "",
-            username: "",
-            status: "ongoing",
-            institution: "",
-            startDate: "",
-            endDate: "",
-            password: "",
-            confirmPassword: "",
-            projectFile: null,
-          });
-          setResearchers([{ name: "", remail: "", researchField: "", role: "" }]);
-          setNumResearchers(1);
-          setErrors({});
   
-          // Redirect to login page
-          navigate("/signIn");
-        } else {
-          // Show an alert if username or email already exists
-          alert(result.message || "Form submission failed. Please try again.");
-        }
-      } catch (error) {
-        console.error("Error during submission:", error);
+        setResearchers([{ name: "", remail: "", researchField: "", role: "" }]);
+        setNumResearchers(1);
+        setErrors({});
+  
+        // Redirect to login page
+        navigate("/signIn");
+      } else {
+        alert(result.message || "Form submission failed. Please try again.");
       }
+    } catch (error) {
+      console.error("Error during submission:", error);
+      alert("An unexpected error occurred. Please try again.");
     }
   
     setLoading(false);
@@ -170,19 +182,20 @@ const ResearchForm = () => {
   
 
   return (
+    <div className="app-container">
     <div className="container mt-4">
       <div className="text-center mb-4">
         <h1>Enhancing Research, IPR, Innovation & Start-ups in Gujarat</h1>
       </div>
 
-      <h2 className="mb-4 text-center">Fill out the details of your research project below:</h2>
+      <h2 className="mb-4 text-center formh2">Fill out the details of your research project below:</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form class="researchform" onSubmit={handleSubmit}>
         <fieldset className="border p-3 mb-4">
           <legend className="w-auto">Project Details</legend>
 
           <div className="mb-3">
-            <label className="form-label">Project Title:</label>
+            <label className="form-label rlabel">Project Title:</label>
             <input
               type="text"
               name="title"
@@ -193,9 +206,10 @@ const ResearchForm = () => {
               required
             />
           </div>
+          {errors.title && <p className="text-danger">{errors.title}</p>}
 
           <div className="mb-3">
-            <label className="form-label">Description:</label>
+            <label className="form-label rlabel">Description:</label>
             <textarea
               name="description"
               className="form-control"
@@ -207,7 +221,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Status:</label>
+            <label className="form-label rlabel">Status:</label>
             <select
               name="status"
               className="form-select"
@@ -220,7 +234,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Institution:</label>
+            <label className="form-label rlabel">Institution:</label>
             <input
               type="text"
               name="institution"
@@ -233,7 +247,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Email:</label>
+            <label className="form-label rlabel">Email:</label>
             <input
               type="email"
               name="email"
@@ -246,7 +260,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Start Date:</label>
+            <label className="form-label rlabel">Start Date:</label>
             <input
               type="date"
               name="startDate"
@@ -258,7 +272,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">End Date:</label>
+            <label className="form-label rlabel">End Date:</label>
             <input
               type="date"
               name="endDate"
@@ -277,7 +291,7 @@ const ResearchForm = () => {
           <legend className="w-auto">Project Researchers</legend>
 
           <div className="mb-3">
-            <label className="form-label">Number of Researchers:</label>
+            <label className="form-label rlabel">Number of Researchers:</label>
             <input
               type="number"
               className="form-control"
@@ -291,7 +305,7 @@ const ResearchForm = () => {
           {researchers.slice(0, numResearchers).map((researcher, index) => (
             <div key={index}>
               <div className="mb-3">
-                <label className="form-label">Researcher {index + 1} Name:</label>
+                <label className="form-label rlabel">Researcher {index + 1} Name:</label>
                 <input
                   type="text"
                   name="name"
@@ -304,7 +318,7 @@ const ResearchForm = () => {
               </div>
 
               <div className="mb-3">
-            <label className="form-label">Email:</label>
+            <label className="form-label rlabel">Email:</label>
             <input
               type="email"
               name="remail"
@@ -317,7 +331,7 @@ const ResearchForm = () => {
           </div>
 
               <div className="mb-3">
-                <label className="form-label">Research Field:</label>
+                <label className="form-label rlabel">Research Field:</label>
                 <input
                   type="text"
                   name="researchField"
@@ -329,7 +343,7 @@ const ResearchForm = () => {
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Role:</label>
+                <label className="form-label rlabel">Role:</label>
                 <input
                   type="text"
                   name="role"
@@ -348,7 +362,7 @@ const ResearchForm = () => {
 
           {/* Add username input */}
           <div className="mb-3">
-            <label className="form-label">Username:</label>
+            <label className="form-label rlabel">Username:</label>
             <input
               type="text"
               name="username"
@@ -361,7 +375,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Password:</label>
+            <label className="form-label rlabel">Password:</label>
             <input
               type="password"
               name="password"
@@ -374,7 +388,7 @@ const ResearchForm = () => {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Confirm Password:</label>
+            <label className="form-label rlabel">Confirm Password:</label>
             <input
               type="password"
               name="confirmPassword"
@@ -389,15 +403,21 @@ const ResearchForm = () => {
           {errors.passwordError && <p className="text-danger">{errors.passwordError}</p>}
 
           <div className="mb-3">
-            <label className="form-label">Upload File:</label>
-            <input type="file" name="projectFile" className="form-control" onChange={handleFileChange} />
-          </div>
+    <label className="form-label rlabel">Upload File:</label>
+    <input 
+      type="file" 
+      name="projectFile" 
+      className={`form-control ${errors.fileError ? "is-invalid" : ""}`}
+      onChange={handleFileChange} 
+    />
+    {errors.fileError && <div className="invalid-feedback">{errors.fileError}</div>}
+  </div>
 
-          {formData.uploadedFile && (
-            <button type="button" className="btn btn-secondary" onClick={openFile}>
-              View Uploaded File
-            </button>
-          )}
+  {formData.uploadedFile && (
+    <button type="button" className="btn btn-secondary" onClick={openFile}>
+      View Uploaded File
+    </button>
+  )}
         </fieldset>
 
         <div className="text-center">
@@ -406,16 +426,34 @@ const ResearchForm = () => {
           </button>
         </div>
       </form>
-      <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={() => openFileFromServer()} // Pass the file ID
-        >
-          View File from Database
-        </button>
 
+    </div>
     </div>
   );
 };
 
 export default ResearchForm;
+
+{/* <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => openFileFromServer()} // Pass the file ID
+        >
+          View File from Database
+        </button> */}
+
+        // const openFileFromServer = async () => {
+        //   try {
+        //     const response = await fetch(`http://localhost:4000/open/file`);
+        //     if (!response.ok) {
+        //       throw new Error("Failed to fetch the file");
+        //     }
+        
+        //     const blob = await response.blob(); // Convert the response to a Blob
+        //     const fileUrl = URL.createObjectURL(blob); // Create a URL for the file
+        
+        //     window.open(fileUrl); // Open the file in a new tab
+        //   } catch (error) {
+        //     console.error("Error opening file:", error);
+        //   }
+        // };

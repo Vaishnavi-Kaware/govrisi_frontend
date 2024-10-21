@@ -1,0 +1,93 @@
+/* App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+/* Form Container */
+.container {
+  flex: 1; /* Allow the container to grow and take available space */
+  max-width: 600px; /* Maximum width for the form container */
+  margin: 20px auto; /* Center the container with margin */
+  padding: 20px; /* Padding around the container */
+  background-color: #f8f9fa; /* Light background color */
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  margin-bottom: 50px; /* Space for footer */
+}
+
+/* Heading */
+h2 {
+  text-align: center; /* Center the heading */
+  margin-bottom: 20px; /* Space below the heading */
+  color: #343a40; /* Dark text color for the heading */
+}
+
+/* Form Labels */
+.form-label {
+  font-weight: bold; /* Bold font for labels */
+  color: #495057; /* Darker color for better readability */
+}
+
+/* Form Controls */
+.form-control,
+.form-select {
+  border: 1px solid #ced4da; /* Border color for inputs */
+  border-radius: 0.25rem; /* Rounded corners */
+  padding: 10px; /* Padding inside inputs */
+  font-size: 16px; /* Font size */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #007bff; /* Border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Custom Select Dropdown */
+.form-select {
+  appearance: none; /* Remove default dropdown arrow */
+  background-color: #fff; /* Background color for dropdown */
+  cursor: pointer; /* Change cursor to pointer */
+  padding-right: 30px; /* Space for custom dropdown arrow */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23007bff"><path fill-rule="evenodd" d="M1.5 5.5l7 7 7-7H1.5z"/></svg>'); /* Custom dropdown arrow */
+  background-repeat: no-repeat; /* Prevent repeating background image */
+  background-position: right 10px center; /* Position of the dropdown arrow */
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: #007bff; /* Primary button color */
+  border: none; /* No border */
+  color: white; /* Text color */
+  padding: 10px 15px; /* Padding for button */
+  border-radius: 0.25rem; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Alert Messages */
+.alert {
+  margin: 15px 0; /* Margin for alert messages */
+  padding: 10px; /* Padding for alert messages */
+  border-radius: 0.25rem; /* Rounded corners for alerts */
+  display: flex; /* Flex display for alerts */
+  justify-content: center; /* Center content in alerts */
+}
+
+.alert-danger {
+  background-color: #f8d7da; /* Light red background for error alerts */
+  color: #721c24; /* Darker red text color */
+}
+
+.alert-success {
+  background-color: #d4edda; /* Light green background for success alerts */
+  color: #155724; /* Darker green text color */
+}

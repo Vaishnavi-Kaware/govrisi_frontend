@@ -1,144 +1,94 @@
-/* General Styles */
-body {
-  
+/* ResearchSearchWindow.css */
+
+/* Overall page layout */
+.page-container {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  padding: 20px;
   font-family: 'Arial', sans-serif;
 }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-}
-
-
-
-.mt-4 {
-  margin-top: 1.5rem !important;
-}
-
-.mb-4 {
-  margin-bottom: 1.5rem !important;
-}
-
-/* Header Section */
-.btn-sm {
-  font-size: 14px;
-  padding: 8px 12px;
-}
-
-.text-start .btn-sm {
-  background-color: #6c757d; /* Dark grey for signout */
-  color: #fff;
-}
-
-.text-end .btn-sm {
-  background-color: #007bff; /* Blue for Profile button */
-  color: #fff;
-}
-
-.text-end .btn-sm:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-/* Search Bar Styling */
-.form-control {
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  border: 1px solid #ced4da;
-}
-
-.form-control:focus {
-  border-color: #80bdff;
-  outline: none;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.btn-outline-primary {
-  font-size: 14px;
-  padding: 10px 16px;
-  border-radius: 5px;
-}
-
-.btn-outline-primary:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-/* Research Section */
-
-
-.text-end .btn-sm {
-  font-size: 14px;
-}
-
-.btn-outline-secondary {
-  border-color: #6c757d;
-  color: #6c757d;
-  font-size: 14px;
-  padding: 8px 12px;
-}
-
-.btn-outline-secondary:hover {
-  background-color: #6c757d;
-  color: #fff;
-}
-
-/* Search Results Section */
-.search-result-card {
-  border: 1px solid #e3e6eb;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
+/* Content wrapper to center the main content */
+.content-wrapper {
+  max-width: 800px;
+  margin: 80px auto;
   background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 30px;
 }
 
-.search-result-card h6 {
-  font-size: 18px;
+/* Header section */
+.search-header h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.query-info {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.query-text {
   font-weight: bold;
-  color: #007bff;
+  color: #0056b3;
 }
 
-.search-result-card p {
-  margin: 0.5rem 0;
-  color: #6c757d;
+/* Results section */
+.results-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.search-result-card .status {
-  font-weight: 600;
-  color: #28a745;
-}
-
-.search-result-card .status.out-of-stock {
-  color: #dc3545;
-}
-
-/* Contact Information Section */
-.border {
+.result-card {
+  background-color: #fafafa;
   border-radius: 10px;
   padding: 20px;
-  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
 }
 
+.result-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
+.result-title {
+  font-size: 20px;
+  color: #007acc;
+  margin-bottom: 10px;
+}
 
+.result-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
 
-@media (max-width: 768px) {
-  /* Ensure the layout is responsive */
-  .text-start, .text-end {
-    text-align: center !important;
-    margin-bottom: 10px;
-  }
+.result-status {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
 
-  .d-flex {
-    flex-direction: column;
-  }
+.status-available {
+  background-color: #e6f9e8;
+  color: #2e7d32;
+}
 
-  .auth-buttons button {
-    margin-bottom: 10px;
-  }
+.status-unavailable {
+  background-color: #fde0e0;
+  color: #c62828;
+}
 
-  .me-2, .ms-2 {
-    margin: 0 !important;
-  }
+/* No results section */
+.no-results {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  padding: 20px;
 }
