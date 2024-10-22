@@ -53,5 +53,19 @@
     color: red;
     font-size: 12px;
   }
+
+  .password-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .show-password-button {
+    margin-left: 8px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
   
   

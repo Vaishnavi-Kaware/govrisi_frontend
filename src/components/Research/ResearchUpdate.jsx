@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import '../../assets/styles/ResearchStyle/ResearchUpdate.css';
 
 const UpdateProfile = () => {
@@ -11,6 +12,7 @@ const UpdateProfile = () => {
   const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -60,10 +62,10 @@ const UpdateProfile = () => {
       setError('Password is required.');
       return false;
     }
-    // if (password.length < 6) {
-    //   setError('Password must be at least 6 characters long.');
-    //   return false;
-    // }
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return false;
+    }
     if (!status) {
       setError('Please select a status.');
       return false;
@@ -105,66 +107,77 @@ const UpdateProfile = () => {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <div className="app-container">
-    <div className="container mt-5">
-      <h2>Update Profile</h2>
-      {error && <p className="alert alert-danger">{error}</p>}
-      {success && <p className="alert alert-success">{success}</p>}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="mb-3">
-          <label htmlFor="status" className="form-label">Status</label>
-          <select
-            className="form-select"
-            id="status"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            required
-          >
-            <option value="" disabled>Select Status</option>
-            <option value="ongoing">Ongoing</option>
-            <option value="completed">Completed</option>
-          </select>
-        </div>
+    <div className="profile-app-container">
+  <div className="profile-container mt-5">
+    <h2 className="profile-header">Update Profile</h2>
+    {error && <p className="profile-alert profile-alert-danger">{error}</p>}
+    {success && <p className="profile-alert profile-alert-success">{success}</p>}
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <div className="profile-form-group">
+        <label htmlFor="status" className="profile-form-label">Status</label>
+        <select
+          className="profile-form-select"
+          id="status"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          required
+        >
+          <option value="" disabled>Select Status</option>
+          <option value="ongoing">Ongoing</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
 
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">Username</label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
+      <div className="profile-form-group">
+        <label htmlFor="username" className="profile-form-label">Username</label>
+        <input
+          type="text"
+          className="profile-form-input"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </div>
 
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="file" className="form-label">Upload File</label>
-          <input
-            type="file"
-            className="form-control"
-            id="file"
-            onChange={handleFileChange}
-          />
-          <small className="text-muted">Max size: 1MB</small>
-        </div>
-
-        <button type="submit" className="btn btn-primary">Update</button>
-      </form>
+      <div className="profile-form-group">
+      <label htmlFor="password" className="profile-form-label">
+        Password
+      </label>
+      <div className="password-wrapper">
+        <input
+          type={showPassword ? "text" : "password"} // Toggle input type
+          className="profile-form-input"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <span
+          className="eye-icon"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </span>
+      </div>
     </div>
-    </div>
+
+      <div className="profile-form-group">
+        <label htmlFor="file" className="profile-form-label">Upload File</label>
+        <input
+          type="file"
+          className="profile-form-input"
+          id="file"
+          onChange={handleFileChange}
+        />
+        <small className="profile-file-info">Max size: 1MB</small>
+      </div>
+
+      <button type="submit" className="profile-update-btn">Update</button>
+    </form>
+  </div>
+</div>
+
   );
 };
 

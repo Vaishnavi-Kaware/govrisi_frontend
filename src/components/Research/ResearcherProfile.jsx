@@ -27,7 +27,6 @@ const ResearcherProfile = () => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setData(data); 
         } else {
           navigate('/signin'); // Redirect to login if unauthorized
@@ -177,7 +176,7 @@ const ResearcherProfile = () => {
                       <li><a className="dropdown-item" href="#">Settings</a></li>
                       <li><a className="dropdown-item" href="#">Help</a></li>
                       <li><hr className="dropdown-divider" /></li>
-                      <li><a className="dropdown-item" href="#">Logout</a></li>
+                      <li><a className="dropdown-item" onClick={handleLogout}>Logout</a></li>
                     </ul>
                   </li>
                 </ul>

@@ -12,8 +12,7 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     const fetchProjectDetails = async () => {
-      try {
-        console.log('Project ID:', projectId); // Check projectId
+      try { // Check projectId
         const response = await fetch(`http://localhost:4000/research/projectDetail/${projectId}`);
         if (!response.ok) throw new Error('Failed to fetch project details');
         const data = await response.json();

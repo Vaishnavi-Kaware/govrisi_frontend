@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Header from "../Header";
 import "../../assets/styles/ResearchStyle/SignInForm.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate} from "react-router-dom";
 
 const SignInForm = () => {
   const navigate = useNavigate();
   const [publicUser, setPublicUser] = useState({ username: "", password: "" });
-  const [errors, setErrors] = useState({}); // To track validation errors
+  const [errors, setErrors] = useState({}); 
+  const [showPassword, setShowPassword] = useState(false); 
 
   // Handle input changes
   const handlePublicInputChange = (e) => {
@@ -78,14 +80,22 @@ const SignInForm = () => {
           />
           {errors.username && <p className="error-text">{errors.username}</p>}
 
+          <div className="password-wrapper">
           <input
             className={`input-signin-form ${errors.password ? "error" : ""}`}
-            type="password"
+            type={showPassword ? "text" : "password"} // Toggle type
             name="password"
             placeholder="Enter Password"
             value={publicUser.password}
             onChange={handlePublicInputChange}
           />
+          <span 
+            className="eye-icon" 
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
           {errors.password && <p className="error-text">{errors.password}</p>}
 
           {errors.form && <p className="error-text">{errors.form}</p>}
