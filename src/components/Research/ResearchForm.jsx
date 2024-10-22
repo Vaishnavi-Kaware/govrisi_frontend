@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import axios from "axios";
+import '../../assets/styles/ResearchStyle/ResearchForm.css';
 import { useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const ResearchForm = () => {
   const navigate = useNavigate();
   const [numResearchers, setNumResearchers] = useState(1);
   const [researchers, setResearchers] = useState([{ name: "",remail:"", researchField: "", role: "" }]);
+  const [showPassword, setShowPassword] = useState(false); // For password field
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     email: "", // Add email field
@@ -182,253 +185,269 @@ const ResearchForm = () => {
   
 
   return (
-    <div className="app-container">
-    <div className="container mt-4">
-      <div className="text-center mb-4">
-        <h1>Enhancing Research, IPR, Innovation & Start-ups in Gujarat</h1>
+    <div className="app-wrapper">
+  <div className="form-container mt-4">
+    <div className="header-container text-center mb-4">
+      <h1 className="app-title">
+        Enhancing Research, IPR, Innovation & Start-ups in Gujarat
+      </h1>
+    </div>
+
+    <h2 className="form-heading mb-4 text-center">Fill out the details of your research project below:</h2>
+
+    <form className="research-form" onSubmit={handleSubmit}>
+      <fieldset className="form-section border p-3 mb-4">
+        <legend className="legend-text">Project Details</legend>
+
+        <div className="input-group mb-3">
+          <label className="input-label">Project Title:</label>
+          <input
+            type="text"
+            name="title"
+            className="text-input"
+            placeholder="Enter project title"
+            value={formData.title}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        {errors.title && <p className="error-text">{errors.title}</p>}
+
+        <div className="input-group mb-3">
+          <label className="input-label">Description:</label>
+          <textarea
+            name="description"
+            className="text-area"
+            placeholder="Enter project description"
+            value={formData.description}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+
+        <div className="input-group mb-3">
+          <label className="input-label">Status:</label>
+          <select
+            name="status"
+            className="select-input"
+            value={formData.status}
+            onChange={handleInputChange}
+          >
+            <option value="ongoing">Ongoing</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <div className="input-group mb-3">
+          <label className="input-label">Institution:</label>
+          <input
+            type="text"
+            name="institution"
+            className="text-input"
+            placeholder="Enter your institution name"
+            value={formData.institution}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+
+        <div className="input-group mb-3">
+          <label className="input-label">Email:</label>
+          <input
+            type="email"
+            name="email"
+            className="text-input"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+
+        <div className="input-group mb-3">
+          <label className="input-label">Start Date:</label>
+          <input
+            type="date"
+            name="startDate"
+            className="date-input"
+            value={formData.startDate}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+
+        <div className="input-group mb-3">
+          <label className="input-label">End Date:</label>
+          <input
+            type="date"
+            name="endDate"
+            className="date-input"
+            value={formData.endDate}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+
+        {errors.dateError && <p className="error-text">{errors.dateError}</p>}
+      </fieldset>
+
+      <fieldset className="form-section border p-3 mb-4">
+        <legend className="legend-text">Project Researchers</legend>
+
+        <div className="input-group mb-3">
+          <label className="input-label">Number of Researchers:</label>
+          <input
+            type="number"
+            className="number-input"
+            value={numResearchers}
+            onChange={handleNumResearchersChange}
+            min="1"
+            max="10"
+          />
+        </div>
+
+        {researchers.slice(0, numResearchers).map((researcher, index) => (
+          <div key={index} className="researcher-container">
+            <div className="input-group mb-3">
+              <label className="input-label">Researcher {index + 1} Name:</label>
+              <input
+                type="text"
+                name="name"
+                className="text-input"
+                placeholder="Enter researcher's name"
+                value={researcher.name}
+                onChange={(e) => handleResearchersChange(index, e)}
+                required
+              />
+            </div>
+
+            <div className="input-group mb-3">
+              <label className="input-label">Email:</label>
+              <input
+                type="email"
+                name="remail"
+                className="text-input"
+                placeholder="Enter researcher's email"
+                value={researcher.remail}
+                onChange={(e) => handleResearchersChange(index, e)}
+                required
+              />
+            </div>
+
+            <div className="input-group mb-3">
+              <label className="input-label">Research Field:</label>
+              <input
+                type="text"
+                name="researchField"
+                className="text-input"
+                placeholder="Enter research field"
+                value={researcher.researchField}
+                onChange={(e) => handleResearchersChange(index, e)}
+              />
+            </div>
+
+            <div className="input-group mb-3">
+              <label className="input-label">Role:</label>
+              <input
+                type="text"
+                name="role"
+                className="text-input"
+                placeholder="Enter researcher's role"
+                value={researcher.role}
+                onChange={(e) => handleResearchersChange(index, e)}
+              />
+            </div>
+          </div>
+        ))}
+      </fieldset>
+
+      <fieldset className="form-section border p-3 mb-4">
+        <legend className="legend-text">Other Information</legend>
+
+        <div className="input-group mb-3">
+          <label className="input-label">Username:</label>
+          <input
+            type="text"
+            name="username"
+            className="text-input"
+            placeholder="Enter your username"
+            value={formData.username}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+
+        <div className="input-group mb-3">
+        <label className="input-label">Password:</label>
+        <div className="password-wrapper">
+          <input
+            type={showPassword ? "text" : "password"} // Toggle between text and password
+            name="password"
+            className="text-input"
+            placeholder="Enter password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+          <span
+            className="eye-icon"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
       </div>
 
-      <h2 className="mb-4 text-center formh2">Fill out the details of your research project below:</h2>
-
-      <form class="researchform" onSubmit={handleSubmit}>
-        <fieldset className="border p-3 mb-4">
-          <legend className="w-auto">Project Details</legend>
-
-          <div className="mb-3">
-            <label className="form-label rlabel">Project Title:</label>
-            <input
-              type="text"
-              name="title"
-              className="form-control"
-              placeholder="Enter project title"
-              value={formData.title}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          {errors.title && <p className="text-danger">{errors.title}</p>}
-
-          <div className="mb-3">
-            <label className="form-label rlabel">Description:</label>
-            <textarea
-              name="description"
-              className="form-control"
-              placeholder="Enter project description"
-              value={formData.description}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label rlabel">Status:</label>
-            <select
-              name="status"
-              className="form-select"
-              value={formData.status}
-              onChange={handleInputChange}
-            >
-              <option value="ongoing">Ongoing</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label rlabel">Institution:</label>
-            <input
-              type="text"
-              name="institution"
-              className="form-control"
-              placeholder="Enter your institution name"
-              value={formData.institution}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label rlabel">Email:</label>
-            <input
-              type="email"
-              name="email"
-              className="form-control"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label rlabel">Start Date:</label>
-            <input
-              type="date"
-              name="startDate"
-              className="form-control"
-              value={formData.startDate}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label rlabel">End Date:</label>
-            <input
-              type="date"
-              name="endDate"
-              className="form-control"
-              value={formData.endDate}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          {errors.dateError && <p className="text-danger">{errors.dateError}</p>}
-
-        </fieldset>
-
-        <fieldset className="border p-3 mb-4">
-          <legend className="w-auto">Project Researchers</legend>
-
-          <div className="mb-3">
-            <label className="form-label rlabel">Number of Researchers:</label>
-            <input
-              type="number"
-              className="form-control"
-              value={numResearchers}
-              onChange={handleNumResearchersChange}
-              min="1"
-              max="10"
-            />
-          </div>
-
-          {researchers.slice(0, numResearchers).map((researcher, index) => (
-            <div key={index}>
-              <div className="mb-3">
-                <label className="form-label rlabel">Researcher {index + 1} Name:</label>
-                <input
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  placeholder="Enter researcher's name"
-                  value={researcher.name}
-                  onChange={(e) => handleResearchersChange(index, e)}
-                  required
-                />
-              </div>
-
-              <div className="mb-3">
-            <label className="form-label rlabel">Email:</label>
-            <input
-              type="email"
-              name="remail"
-              className="form-control"
-              placeholder="Enter researcher's email"
-              value={researcher.remail}
-              onChange={(e) => handleResearchersChange(index, e)}
-              required
-            />
-          </div>
-
-              <div className="mb-3">
-                <label className="form-label rlabel">Research Field:</label>
-                <input
-                  type="text"
-                  name="researchField"
-                  className="form-control"
-                  placeholder="Enter research field"
-                  value={researcher.researchField}
-                  onChange={(e) => handleResearchersChange(index, e)}
-                />
-              </div>
-
-              <div className="mb-3">
-                <label className="form-label rlabel">Role:</label>
-                <input
-                  type="text"
-                  name="role"
-                  className="form-control"
-                  placeholder="Enter researcher's role"
-                  value={researcher.role}
-                  onChange={(e) => handleResearchersChange(index, e)}
-                />
-              </div>
-            </div>
-          ))}
-        </fieldset>
-
-        <fieldset className="border p-3 mb-4">
-          <legend className="w-auto">Other Information</legend>
-
-          {/* Add username input */}
-          <div className="mb-3">
-            <label className="form-label rlabel">Username:</label>
-            <input
-              type="text"
-              name="username"
-              className="form-control"
-              placeholder="Enter your username"
-              value={formData.username}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label rlabel">Password:</label>
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              placeholder="Enter password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="mb-3">
-            <label className="form-label rlabel">Confirm Password:</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              className="form-control"
-              placeholder="Confirm password"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          {errors.passwordError && <p className="text-danger">{errors.passwordError}</p>}
-
-          <div className="mb-3">
-    <label className="form-label rlabel">Upload File:</label>
-    <input 
-      type="file" 
-      name="projectFile" 
-      className={`form-control ${errors.fileError ? "is-invalid" : ""}`}
-      onChange={handleFileChange} 
-    />
-    {errors.fileError && <div className="invalid-feedback">{errors.fileError}</div>}
-  </div>
-
-  {formData.uploadedFile && (
-    <button type="button" className="btn btn-secondary" onClick={openFile}>
-      View Uploaded File
-    </button>
-  )}
-        </fieldset>
-
-        <div className="text-center">
-          <button type="submit" className="btn btn-primary" disabled={loading}>
-            {loading ? "Submitting..." : "Submit"}
-          </button>
+      <div className="input-group mb-3">
+        <label className="input-label">Confirm Password:</label>
+        <div className="password-wrapper">
+          <input
+            type={showConfirmPassword ? "text" : "password"} // Toggle for confirm password
+            name="confirmPassword"
+            className="text-input"
+            placeholder="Confirm password"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+            required
+          />
+          <span
+            className="eye-icon"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+          >
+            {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
-      </form>
+      </div>
 
-    </div>
-    </div>
+        {errors.passwordError && <p className="error-text">{errors.passwordError}</p>}
+
+        <div className="input-group mb-3">
+          <label className="input-label">Upload File:</label>
+          <input
+            type="file"
+            name="projectFile"
+            className={`file-input ${errors.fileError ? "is-invalid" : ""}`}
+            onChange={handleFileChange}
+          />
+          {errors.fileError && <div className="error-feedback">{errors.fileError}</div>}
+        </div>
+
+        {formData.uploadedFile && (
+          <button type="button" className="view-file-button" onClick={openFile}>
+            View Uploaded File
+          </button>
+        )}
+      </fieldset>
+
+      <div className="submit-container text-center">
+        <button type="submit" className="submit-button" disabled={loading}>
+          {loading ? "Submitting..." : "Submit"}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
   );
 };
 

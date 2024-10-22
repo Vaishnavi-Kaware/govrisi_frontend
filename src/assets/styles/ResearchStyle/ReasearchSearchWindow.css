@@ -92,3 +92,11 @@
   color: #888;
   padding: 20px;
 }
+
+.result-label {
+  font-weight: bold;
+  margin-right: 8px;
+  display: inline-block;
+  min-width: 100px;
+  color: #555;
+}

@@ -1,12 +1,28 @@
 import ImageSlider from '../ImageSlider';
 import Header from '../Header';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../assets/styles/Homepage.css';
+import '../../assets/styles/ResearchStyle/ResearchHomePage.css';
 
 export default function HomePage() {
-  const [searchTerm, setSearchTerm] = useState(''); // Track search input
+  const [searchTerm, setSearchTerm] = useState('');
+  const [latestProjects, setLatestProjects] = useState([]); // Track search input
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchLatestProjects = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/research/latest');
+        const data = await response.json();
+        setLatestProjects(data); // Update state with the latest projects
+      } catch (error) {
+        console.error('Error fetching latest projects:', error);
+      }
+    };
+
+    fetchLatestProjects();
+  }, []);
 
   const handleInputChange = (e) => setSearchTerm(e.target.value); // Update state
 
@@ -48,7 +64,25 @@ export default function HomePage() {
           </div>
         </div>
       </nav>
-      <ImageSlider />
+      {latestProjects.length === 0 && <ImageSlider />}
+
+      {/* Section to display the latest research projects */}
+      {latestProjects.length > 0 && (
+        <section className="latest-projects">
+          <h2>Latest Research Projects</h2>
+          <div className="project-list">
+            {latestProjects.map((project, index) => (
+              <Link to={`/research-project-detail/${project._id}`} key={index}>
+                <div className="project-card">
+                  <h3>{project.title}</h3>
+                  <p><strong>Institution:</strong> {project.institution}</p>
+                  <p>{project.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

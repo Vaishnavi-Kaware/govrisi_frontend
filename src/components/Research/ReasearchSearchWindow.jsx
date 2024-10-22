@@ -55,12 +55,23 @@ const ResearchSearchPage = () => {
           ) : filteredResults.length > 0 ? (
             filteredResults.map((result, index) => (
               <Link to={`/research-project-detail/${result._id}`} key={index}>
-              <div className="result-card" key={index}>
+              <div className="result-card">
                 <h2 className="result-title">{result.title}</h2>
-                <p className="result-description">{result.description}</p>
-                <p className="result-description">{result.institution}</p>
+
+                <div className="result-field">
+                  <label className="result-label">Description:</label>
+                  <p className="result-description">{result.description}</p>
+                </div>
+
+                <div className="result-field">
+                  <label className="result-label">Institution:</label>
+                  <p className="result-description">{result.institution}</p>
+                </div>
+
                 <span
-                  className={`result-status ${result.status === "completed" ? "status-available" : "status-unavailable"}`}
+                  className={`result-status ${
+                    result.status === "completed" ? "status-available" : "status-unavailable"
+                  }`}
                 >
                   {result.status}
                 </span>

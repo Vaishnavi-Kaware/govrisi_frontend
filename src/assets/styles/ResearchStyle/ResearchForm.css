@@ -1,63 +1,200 @@
-/* ResearchForm.css */
+/* App Wrapper */
+.app-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #f0f2f5;
+}
 
-.researchform {
-  flex: 1;
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    background-color: #f9f9f9 ;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
+/* Form Container */
+.form-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  width: 100%;
+}
 
-  .app-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Full viewport height */
-  }
-  .formh2{
-    text-align: center;
-  }
+/* Header Styles */
+.app-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
 
-  
-  .rlabel {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-  }
-  
-  input, select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .researcher-section {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-  }
-  
-  .researcher-section h3 {
-    color: #333;
-  }
-  
+.app-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #3d5a80;
+  text-align: center;
+}
+
+/* Form Fieldset */
+.form-section {
+  border: 2px solid #3d5a80;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+
+.legend-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Form Labels */
+.input-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.text-area {
+  width: 100%;         /* Take full width of the container */
+  height: 150px;       /* Increase height for better visibility */
+  padding: 10px;       /* Add padding for spacing inside */
+  font-size: 16px;     /* Make text larger and readable */
+  border-radius: 8px;  /* Rounded corners for aesthetics */
+  border: 1px solid #ccc; /* Subtle border for separation */
+  resize: vertical;    /* Allow vertical resizing only */
+  outline: none;       /* Remove default focus outline */
+}
+
+.text-area:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle glow on focus */
+}
+
+/* Input Fields */
+.text-input,
+.email-input,
+.date-input,
+.password-input,
+.number-input,
+.select-input,
+.file-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  transition: border 0.3s;
+}
+
+.text-input:focus,
+.email-input:focus,
+.date-input:focus,
+.password-input:focus,
+.number-input:focus,
+.select-input:focus,
+.file-input:focus {
+  border-color: #3d5a80;
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* Error Messages */
+.error-text {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+/* Button Styles */
+.primary-button {
+  background-color: #2980b9;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.primary-button:disabled {
+  background-color: #7f8c8d;
+  cursor: not-allowed;
+}
+
+.primary-button:hover:not(:disabled) {
+  background-color: #3498db;
+}
+
+/* File Upload Button */
+.view-file-button {
+  background-color: #7f8c8d;
+  color: #ffffff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.view-file-button:hover {
+  background-color: #95a5a6;
+}
+
+/* Researchers Section */
+.researchers-container {
+  margin-top: 10px;
+}
+
+.researcher-field {
+  margin-bottom: 15px;
+}
+
+/* Loading State */
+.loading-text {
+  color: #2980b9;
+  font-size: 1rem;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Form Alignment */
+.form-alignment {
+  text-align: center;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.text-input {
+  width: 100%;
+  padding-right: 40px; /* Space for the eye icon */
+  padding: 10px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.eye-icon:hover {
+  color: #000;
+}

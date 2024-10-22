@@ -1,93 +1,118 @@
-/* App Container */
-.app-container {
+/* General Container Styles */
+.profile-app-container {
+  background-color: #f9f9f9;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Full viewport height */
+  justify-content: center;
+  align-items: center;
 }
 
-/* Form Container */
-.container {
-  flex: 1; /* Allow the container to grow and take available space */
-  max-width: 600px; /* Maximum width for the form container */
-  margin: 20px auto; /* Center the container with margin */
-  padding: 20px; /* Padding around the container */
-  background-color: #f8f9fa; /* Light background color */
-  border-radius: 0.5rem; /* Rounded corners */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-  margin-bottom: 50px; /* Space for footer */
+.profile-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
 }
 
-/* Heading */
-h2 {
-  text-align: center; /* Center the heading */
-  margin-bottom: 20px; /* Space below the heading */
-  color: #343a40; /* Dark text color for the heading */
+/* Header */
+.profile-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* Form Labels */
-.form-label {
-  font-weight: bold; /* Bold font for labels */
-  color: #495057; /* Darker color for better readability */
+/* Alerts */
+.profile-alert {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
 
-/* Form Controls */
-.form-control,
-.form-select {
-  border: 1px solid #ced4da; /* Border color for inputs */
-  border-radius: 0.25rem; /* Rounded corners */
-  padding: 10px; /* Padding inside inputs */
-  font-size: 16px; /* Font size */
-  transition: border-color 0.3s; /* Smooth transition for border color */
+.profile-alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
 }
 
-.form-control:focus,
-.form-select:focus {
-  border-color: #007bff; /* Border color on focus */
-  outline: none; /* Remove default outline */
+.profile-alert-success {
+  background-color: #d4edda;
+  color: #155724;
 }
 
-/* Custom Select Dropdown */
-.form-select {
-  appearance: none; /* Remove default dropdown arrow */
-  background-color: #fff; /* Background color for dropdown */
-  cursor: pointer; /* Change cursor to pointer */
-  padding-right: 30px; /* Space for custom dropdown arrow */
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="%23007bff"><path fill-rule="evenodd" d="M1.5 5.5l7 7 7-7H1.5z"/></svg>'); /* Custom dropdown arrow */
-  background-repeat: no-repeat; /* Prevent repeating background image */
-  background-position: right 10px center; /* Position of the dropdown arrow */
+/* Form Group Styling */
+.profile-form-group {
+  margin-bottom: 15px;
 }
 
-/* Primary Button */
-.btn-primary {
-  background-color: #007bff; /* Primary button color */
-  border: none; /* No border */
-  color: white; /* Text color */
-  padding: 10px 15px; /* Padding for button */
-  border-radius: 0.25rem; /* Rounded corners */
-  font-size: 16px; /* Font size */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s; /* Smooth transition for background color */
+.profile-form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+.profile-form-input,
+.profile-form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  transition: border-color 0.3s;
 }
 
-/* Alert Messages */
-.alert {
-  margin: 15px 0; /* Margin for alert messages */
-  padding: 10px; /* Padding for alert messages */
-  border-radius: 0.25rem; /* Rounded corners for alerts */
-  display: flex; /* Flex display for alerts */
-  justify-content: center; /* Center content in alerts */
+.profile-form-input:focus,
+.profile-form-select:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
 }
 
-.alert-danger {
-  background-color: #f8d7da; /* Light red background for error alerts */
-  color: #721c24; /* Darker red text color */
+/* File Upload */
+.profile-file-info {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #6c757d;
 }
 
-.alert-success {
-  background-color: #d4edda; /* Light green background for success alerts */
-  color: #155724; /* Darker green text color */
+/* Update Button */
+.profile-update-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.profile-update-btn:hover {
+  background-color: #0056b3;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.profile-form-input {
+  width: 100%;
+  padding-right: 40px; /* Space for eye icon */
+  padding: 10px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.eye-icon:hover {
+  color: #000;
 }
