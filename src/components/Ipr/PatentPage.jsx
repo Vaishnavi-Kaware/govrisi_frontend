@@ -73,7 +73,7 @@
 
 
 import React from 'react';
-import '../assets/styles/PatentPage.css'; // Import the CSS file
+import '../../assets/styles/IPRStyle/PatentPage.css'; // Import the CSS file
  
 
 function PatentSteps() {
