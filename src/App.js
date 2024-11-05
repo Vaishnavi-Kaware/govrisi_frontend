@@ -12,15 +12,18 @@ import ResearchProjectDetail from './components/Research/ProjectDetail';
 import ResearchUpdate from './components/Research/ResearchUpdate';
 import ReasearchSearchWindow from './components/Research/ReasearchSearchWindow';
 import ContactUs from './components/ContactUs';
-import IPRHomePage from './components/IPRHomePage';
-import ManagePatents from './components/ManagePatents'; // Import the ManagePatents component
-import IPRStatusPage from './components/IPRStatusPage';
-import PatentTrack from './components/PatentTrack';
+import IPRHomePage from './components/Ipr/IPRHomePage';
+import IPRStatusPage from './components/Ipr/IPRStatusPage';
+import ManagePatents from './components/Ipr/ManagePatents';
+import IPRForm from './components/Ipr/addIPR';
+import IPRInfo from './components/Ipr/IPRInfoPage';
+import IPRSearchFilter from './components/Ipr/IPRSearchFilter';
+import PatentTrack from './components/Ipr/PatentTrack';
 import Geographical_Indication from './components/Geographical_Indication';
 import Industrial_Designs from './components/Industrial_Designs';
 import Trade_Secret from './components/Trade_Secret';
 import TrademarkPage from './components/TrademarkPage';
-import PatentPage from './components/PatentPage';
+import PatentPage from './components/Ipr/PatentPage';
 import CopyrightPage from './components/CopyrightPage';
 import StartupHomePage from './components/StartupHomePage'; 
 
@@ -47,6 +50,9 @@ function App() {
           <Route path="/manage-patents" element={<ManagePatents />} /> {/* Add Manage Patents Route */}
           <Route path="/ipr-status" element={<IPRStatusPage />} /> {/* Add this line */}
           <Route path="/Patent-Track" element={<PatentTrack />} />
+          <Route path="/addIpr" element={<IPRForm/>} />
+          <Route path="/ipr-info" element={<IPRInfo/>} />
+          <Route path="/ipr-search" element={<IPRSearchFilter/>} />
           <Route path="/geographical-indication" element={<Geographical_Indication />} /> 
           <Route path="/industrial_designs" element={<Industrial_Designs />} />
           <Route path="/trade_secret" element={<Trade_Secret />} />

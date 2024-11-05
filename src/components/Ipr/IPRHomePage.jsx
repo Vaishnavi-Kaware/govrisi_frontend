@@ -1,15 +1,15 @@
 import React, { useRef, useEffect } from 'react';
-import Header from './Header';
+import Header from '../Header';
 import { Link } from 'react-router-dom';
-import '../assets/styles/IPRHomePage.css';
+import '../../assets/styles/IPRStyle/IPRHomePage.css';
 
 // Import your images
-import patents from '../assets/images/patents.jpg';
-import copyright from '../assets/images/copyright.jpg';
-import trademarks from '../assets/images/Trademarks.jpg';
-import industrialDesigns from '../assets/images/Industrial_designs.jpg';
-import geographicalIndications from '../assets/images/Geographical_indications.jpg';
-import tradeSecrets from '../assets/images/Trade_secrets.jpg';
+import patents from '../../assets/images/patents.jpg';
+import copyright from '../../assets/images/copyright.jpg';
+import trademarks from '../../assets/images/Trademarks.jpg';
+import industrialDesigns from '../../assets/images/Industrial_designs.jpg';
+import geographicalIndications from '../../assets/images/Geographical_indications.jpg';
+import tradeSecrets from '../../assets/images/Trade_secrets.jpg';
 
 export default function IPRHomePage() {
   // Refs for videos
@@ -69,7 +69,7 @@ export default function IPRHomePage() {
                 placeholder="Search" 
                 aria-label="Search" 
               />
-              <button className="btn btn-outline-success" type="submit">Search</button>
+              <Link to="/ipr-search"><button className="btn btn-outline-success" type="submit">Search</button></Link>
             </form>
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function IPRHomePage() {
               <video 
                 ref={(el) => videoRefs.current[0] = el} 
                 width="100%" height="215" controls>
-                <source src={require('../assets/images/Recent_Developments_in_IP_Law.mp4')} type="video/mp4" />
+                <source src={require('../../assets/images/Recent_Developments_in_IP_Law.mp4')} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <p className="mt-2">Recent Developments in IP Law</p>
@@ -166,7 +166,7 @@ export default function IPRHomePage() {
               <video 
                 ref={(el) => videoRefs.current[1] = el} 
                 width="100%" height="215" controls>
-                <source src={require('../assets/images/Need_of_IPR.mp4')} type="video/mp4" />
+                <source src={require('../../assets/images/Need_of_IPR.mp4')} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <p className="mt-2">Need of IPR</p>
@@ -175,7 +175,7 @@ export default function IPRHomePage() {
               <video 
                 ref={(el) => videoRefs.current[2] = el} 
                 width="100%" height="215" controls>
-                <source src={require('../assets/images/intro.mp4')} type="video/mp4" />
+                <source src={require('../../assets/images/intro.mp4')} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <p className="mt-2">Introduction to IPR</p>

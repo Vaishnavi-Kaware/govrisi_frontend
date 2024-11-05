@@ -1,6 +1,6 @@
 // PatentTrack.jsx
 import React from 'react';
-import Header from './Header';
+import Header from '../Header';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure Bootstrap is imported
 
 export default function PatentTrack() {

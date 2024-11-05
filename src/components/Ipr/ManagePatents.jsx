@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './Header';
-import '../assets/styles/ManagePatents.css'; // Import the CSS file
+import Header from '../Header';
+import '../../assets/styles/IPRStyle/ManagePatents.css'; // Import the CSS file
 
 function ManagePatents() {
   return (
