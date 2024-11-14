@@ -92,7 +92,7 @@ const ResearchForm = () => {
   const validateForm = () => {
     const errors = {};
     const usernameRegex = /^[A-Za-z0-9_]{1,15}$/;
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,15}$/;
   
     // Required field validations
     if (!formData.title) errors.title = "Title is required.";

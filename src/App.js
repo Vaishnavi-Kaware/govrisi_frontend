@@ -18,7 +18,7 @@ import ManagePatents from './components/Ipr/ManagePatents';
 import IPRForm from './components/Ipr/addIPR';
 import IPRInfo from './components/Ipr/IPRInfoPage';
 import IPRSearchFilter from './components/Ipr/IPRSearchFilter';
-import PatentTrack from './components/Ipr/PatentTrack';
+import IPRApplicationStatus from './components/Ipr/IPRApplicationStatus';
 import Geographical_Indication from './components/Geographical_Indication';
 import Industrial_Designs from './components/Industrial_Designs';
 import Trade_Secret from './components/Trade_Secret';
@@ -49,7 +49,7 @@ function App() {
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/manage-patents" element={<ManagePatents />} /> {/* Add Manage Patents Route */}
           <Route path="/ipr-status" element={<IPRStatusPage />} /> {/* Add this line */}
-          <Route path="/Patent-Track" element={<PatentTrack />} />
+          <Route path="/apply-status" element={<IPRApplicationStatus />} />
           <Route path="/addIpr" element={<IPRForm/>} />
           <Route path="/ipr-info" element={<IPRInfo/>} />
           <Route path="/ipr-search" element={<IPRSearchFilter/>} />
