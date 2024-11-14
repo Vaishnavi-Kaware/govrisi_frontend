@@ -56,7 +56,7 @@ export default function IPRHomePage() {
                 <Link className="nav-link active" to="/manage-patents">Manage Patents</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" to="/patent-track">Patent Track</Link>
+                <Link className="nav-link active" to="/apply-status">Application Search</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link active" to="/ipr-status">IPR Status</Link>
